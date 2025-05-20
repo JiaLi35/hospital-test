@@ -36,7 +36,7 @@
             <div class="row">
               <div class="col">
                 <label for="phone_number" class="form-label">Phone Number</label>
-                <input type="number" class="form-control" id="phone_number" name="phone_number" value="+60"/>
+                <input type="number" class="form-control" id="phone_number" name="phone_number"/>
               </div>
               <div class="col">
                 <label for="email" class="form-label"

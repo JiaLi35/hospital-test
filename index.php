@@ -105,8 +105,13 @@ switch ($path) {
 
         // set up the action route for edit doctor information in doctors table
         case '/doctor/edit':
-            require "includes/doctor/edit-user.php";
+            require "includes/doctor/edit.php";
             break;    
+
+        // set up the action route for edit doctor information in doctors table
+        case '/doctor/delete':
+            require "includes/doctor/delete.php";
+            break;  
 
         // redirect the info and select doctor's user_id
         case '/doctor/redirect':

@@ -6,15 +6,21 @@
     exit;
   }
 
+  $search_keyword = isset($_GET["search"]) ? $_GET["search"] : "";
+
   // TODO: 1. connect to database
   $database = connectToDB();
   // TODO: 2. get all the users
   // TODO: 2.1
-  $sql = "SELECT * FROM doctors";
+  $sql = "SELECT * FROM doctors
+          WHERE name LIKE :keyword
+          ORDER BY doctors.id DESC";
   // TODO: 2.2
   $query = $database->prepare( $sql );
   // TODO: 2.3
-  $query->execute();
+  $query->execute([
+    "keyword" => "%$search_keyword%"
+  ]);
   // TODO: 2.4
   $doctors = $query->fetchAll();
 ?>
@@ -27,6 +33,14 @@
           <a href="/manage-doctors-add-user" class="btn btn-primary btn-sm">Add New Doctor</a>
         </div>
       </div>
+      <form
+        method="GET"
+        action="/manage-doctors" 
+        class="mb-2 d-flex align-items center gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Type a keyword to search..." value="<?=$search_keyword;?>">
+        <button class="btn btn-primary"><i class="bi bi-search"></i></button> 
+        <a href="/manage-doctors" class="btn btn-dark">Reset</a>
+      </form>
       <div class="card mb-2 p-4">
         <?php require "parts/message_success.php"; ?>
         <table class="table">
@@ -70,7 +84,7 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <p>You are tyring to delete this user: <?= $doctor["email"]; ?></p>
+                          <p>You are tyring to delete this user: <?= $doctor["name"]; ?> ( <?= $doctor["email"]; ?> )</p>
                           <p>This action cannot be reversed.</p>
                         </div>
                         <div class="modal-footer">
