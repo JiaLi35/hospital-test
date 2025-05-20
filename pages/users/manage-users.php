@@ -44,9 +44,9 @@
                 <td><?= $user["name"] ?></td>
                 <td><?= $user["email"] ?></td>
 
-                <?php if($user["role"] === "patient") : ?>
+                <?php if($user["role"] === "Patient") : ?>
                   <td><span class="badge bg-success"><?= $user["role"] ?></span></td>
-                <?php elseif ($user["role"] == "doctor") : ?>
+                <?php elseif ($user["role"] == "Doctor") : ?>
                   <td><span class="badge bg-info"><?= $user["role"] ?></span></td>
                 <?php else : ?>
                   <td><span class="badge bg-primary"><?= $user["role"] ?></span></td>

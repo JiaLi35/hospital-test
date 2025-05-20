@@ -24,7 +24,7 @@
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Doctors</h1>
         <div class="text-end">
-          <a href="/manage-doctors-add" class="btn btn-primary btn-sm">Add New User</a>
+          <a href="/manage-doctors-add-user" class="btn btn-primary btn-sm">Add New Doctor</a>
         </div>
       </div>
       <div class="card mb-2 p-4">

@@ -52,10 +52,17 @@ switch ($path) {
         require "pages/doctors/manage-doctors.php";
         break;
     
-    case '/manage-doctors-add':
-        require "pages/doctors/manage-doctors-add.php";
+    // add doctors login information
+    case '/manage-doctors-add-user':
+        require "pages/doctors/manage-doctors-add-user.php";
         break;
 
+    // add doctors information
+    case '/manage-doctors-add-info':
+        require "pages/doctors/manage-doctors-add-info.php";
+        break;
+
+    // edit doctors information (in doctors table)
     case '/manage-doctors-edit':
         require "pages/doctors/manage-doctors-edit.php";
         break;
@@ -93,12 +100,17 @@ switch ($path) {
 
         // set up the action route for add doctor information into doctors table
         case '/doctor/add-info':
-            require "includes/doctor/add-user.php";
+            require "includes/doctor/add-info.php";
             break;    
 
-        
         // set up the action route for edit doctor information in doctors table
         case '/doctor/edit':
             require "includes/doctor/edit-user.php";
             break;    
+
+        // redirect the info and select doctor's user_id
+        case '/doctor/redirect':
+            require "includes/doctor/redirect.php";
+            break;    
+
 }

@@ -12,17 +12,12 @@
 
 <div class="container mx-auto my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="h1">Add New User</h1>
+        <h1 class="h1">Add New Doctor</h1>
       </div>
       <div class="card mb-2 p-4">
-        <!--
-            TODO: 1. form method and action (done)
-            TODO: 2. field name (done)
-            TODO: 3. display error message (done)
-        -->
-        <form method="POST" action="/doctor/add">  
+        <form method="POST" action="/doctor/add-user">  
         <!-- display success message -->
-        <?php require ("parts/message_success.php"); ?>
+        <?php require "parts/message_success.php"; ?>
         <!-- display error message -->
         <?php require "parts/message_error.php"; ?>       
           <div class="mb-3">
@@ -59,10 +54,7 @@
           <div class="mb-3">
             <label for="role" class="form-label">Role</label>
             <select class="form-control" id="role" name="role">
-              <option value="">Select an option</option>
-              <option value="user">User</option>
-              <option value="editor">Editor</option>
-              <option value="admin">Admin</option>
+              <option value="Doctor">Doctor</option>
             </select>
           </div>
           <div class="d-grid">
@@ -72,7 +64,7 @@
       </div>
       <div class="text-center">
         <a href="/manage-doctors" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Users</a
+          ><i class="bi bi-arrow-left"></i> Back to Doctors</a
         >
       </div>
     </div>
