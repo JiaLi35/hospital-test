@@ -37,7 +37,7 @@
             </tr>
           </thead>
           <tbody>
-            <!-- TODO: 3. use foreach to dsiplay all the users  -->
+            <!-- display all the users  -->
             <?php foreach ($users as $index => $user) : ?>
               <tr>
                 <th scope="row"><?= $index+1 ?></th>
@@ -77,13 +77,14 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <!-- delete button -->
+                          <!-- delete button start -->
                           <form method="POST" action="/user/delete">
                             <input type="hidden" name="id" value="<?= $user["id"]?>">
                             <button class="btn btn-danger btn-sm">
                               <i class="bi bi-trash"></i> DELETE
                             </button>
                           </form>
+                          <!-- delete button end -->
                         </div>
                       </div>
                     </div>
