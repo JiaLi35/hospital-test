@@ -29,7 +29,7 @@
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_error.php"; ?>
-        <form method="POST" action="/doctor/edit">
+        <form method="POST" action="/doctor/edit" enctype="multipart/form-data">
           <div class="mb-3">
             <div class="row">
               <div class="col">
@@ -58,6 +58,15 @@
             <label for="biography" class="form-label">Biography</label>
             <textarea class="form-control" id="biography" rows="5" name="biography"><?=$doctor["biography"];?></textarea>
           </div>
+          <!-- update image start -->
+          <div class="mb-3">
+            <label class="form-label">Image</label>
+            <div class="mb-3">
+              <img src="/<?= $doctor["image"]; ?>" class="img-fluid">
+            </div>
+            <input type="file" name="image" accept="image/*">
+          </div>
+          <!-- update image end -->
           <div class="d-grid">
             <input type="hidden" name="id" value="<?= $doctor["id"]; ?>">
             <button type="submit" class="btn btn-primary">Update</button>

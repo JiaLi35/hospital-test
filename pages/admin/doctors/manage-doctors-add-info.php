@@ -15,7 +15,7 @@
         <h1 class="h1">Doctor's Details</h1>
       </div>
       <div class="card mb-2 p-4">
-        <form method="POST" action="/doctor/add-info">  
+        <form method="POST" action="/doctor/add-info" enctype="multipart/form-data">  
         <!-- display success message -->
         <?php require "parts/message_success.php"; ?>
         <!-- display error message -->
@@ -54,6 +54,9 @@
           <div class="mb-3">
             <label for="biography" class="form-label">Biography</label>
             <textarea class="form-control" id="biography" rows="5" name="biography"></textarea>
+          </div>
+          <div>
+            <input type="file" name="image" accept="image/*">
           </div>
           <div class="d-grid">
             <input type="hidden" name="user_id" value="<?= $_GET["id"]; ?>">

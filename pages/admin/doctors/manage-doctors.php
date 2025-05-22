@@ -47,6 +47,7 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
+              <th scope="col">Image</th>
               <th scope="col">Name</th>
               <th scope="col">Specialty</th>
               <th scope="col">Phone Number</th>
@@ -59,6 +60,11 @@
             <?php foreach ($doctors as $index => $doctor) : ?>
               <tr>
                 <th scope="row"><?= $doctor["id"] ?></th>
+                <td>          
+                  <?php if (!empty($doctor["image"])) : ?>
+                    <img src="<?= $doctor["image"]; ?>" style="width: 100px; height: 100px;">
+                  <?php endif; ?>
+                </td>
                 <td><?= $doctor["name"] ?></td>
                 <td><?= $doctor["specialty"] ?></td>
                 <td><?= $doctor["phone_number"] ?></td>

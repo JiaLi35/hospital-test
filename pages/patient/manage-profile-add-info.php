@@ -1,3 +1,11 @@
+<?php   
+
+  if (!isUserLoggedIn()){
+    header("Location: /");
+    exit;
+  }
+  
+?>
 <?php require "parts/header.php"; ?>
 
 <div class="container my-5" >
