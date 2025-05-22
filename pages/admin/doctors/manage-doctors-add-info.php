@@ -28,7 +28,7 @@
               </div>
               <div class="col">
                 <label for="specialty" class="form-label">Specialty</label>
-                <input type="specialty" class="form-control" id="specialty" name="specialty" />
+                <input type="text" class="form-control" id="specialty" name="specialty" />
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                   >Email</label
                 >
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="email"
                   name="email"

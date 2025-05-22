@@ -39,10 +39,25 @@ if ( empty($name) || empty($email) || empty($password) || empty($confirm_passwor
             "password" => password_hash($password, PASSWORD_DEFAULT)
         ]);
 
-        // set success message
-        $_SESSION["success"] = "Account created successfully. Please login with your email and password.";
+        // fetching data 
+        $user = getUserByEmail($email);
 
-        header("Location: /login");
-        exit;
+        if ( $user ){
+            // verify password
+            if (password_verify($password, $user["password"])) {
+                // store user data in user session
+                $_SESSION["user"] = $user;
+
+                // set success message 
+                $_SESSION["success"] = "Account Created successfully! Please fill in your details.";
+
+                // if user is admin then redirect to admin dashboard
+                if (!isAdmin() && !isDoctor()){
+                     // redirect to patient dashboard
+                     header("Location: /manage-profile-add-info?id=" . $user["id"]);
+                     exit;
+                }
+            }
+        }
     }
 }

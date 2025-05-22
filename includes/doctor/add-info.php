@@ -9,20 +9,6 @@ $phone_number = $_POST["phone_number"];
 $biography = $_POST["biography"];
 $user_id = $_POST["user_id"];
 
-// // finding user id
-// $sql = "SELECT * FROM users WHERE email = :email";
-
-// $query = $database->prepare($sql);
-
-// $query->execute([
-//     "email" => $email
-// ]);
-
-// $user = $query->fetch();
-
-// get user id
-
-
 if (empty($name) || empty($specialty) || empty($email) || empty($phone_number) || empty($biography) || empty($user_id)){
     $_SESSION["error"] = "Please fill up all the fields.";
     header("Location: /manage-posts-edit?id=" . $id);
