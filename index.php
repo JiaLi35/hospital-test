@@ -71,18 +71,19 @@ switch ($path) {
     // patient pages
         // add info page (after sign up)
         case '/manage-profile-add-info':
-            require "pages/patient/manage-profile-add-info.php";
+            require "pages/patient/profile/manage-profile-add-info.php";
             break;
 
         // profile page
-        case '/manage-profile':
-            require "pages/patient/manage-profile.php";
+        case '/patient/manage-profile':
+            require "pages/patient/profile/manage-profile.php";
             break;
 
+    // doctor pages   
         // edit profile / personal information
-        case '/manage-profile-edit':
-            require "pages/patient/manage-profile-edit.php";
-            break;
+            case '/doctor/manage-profile':
+                require "pages/doctor/profile/manage-profile.php";
+                break;
         
     default:
         require "pages/home.php";

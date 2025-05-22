@@ -59,7 +59,16 @@ if ( !empty( $image["name"] ) ) {
         "biography" => $biography
     ]);
 }
+
+if (isAdmin()){    
     $_SESSION["success"] = "Doctor information updated successfully.";
     header("Location: /manage-doctors");
     exit;
+} else {
+    $_SESSION["success"] = "Doctor information updated successfully.";
+    header("Location: /doctor/dashboard");
+    exit;
+}
+
+
 
