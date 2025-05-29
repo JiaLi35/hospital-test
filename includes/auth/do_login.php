@@ -22,22 +22,9 @@ if ( empty($email) || empty($password) ){
 
             // set success message 
             $_SESSION["success"] = "Welcome back, " . $user["name"] . "!";
-
-            // if user is admin then redirect to admin dashboard
-            if (isAdmin()){
-                // redirect to dashboard
-                header("Location: /admin/dashboard");
-                exit;
-            } else if (isDoctor()) {
-                // redirect to doctor dashboard
-                header("Location: /doctor/dashboard");
-                exit;
-            } else {
-                // redirect to patient dashboard
-                header("Location: /patient/dashboard");
-                exit;
-            }
-
+            // redirect to home
+            header("Location: /");
+            exit;
 
         } else {
             $_SESSION["error"] =  "Incorrect Password";

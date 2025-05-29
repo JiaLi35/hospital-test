@@ -66,7 +66,7 @@ if (isAdmin()){
     exit;
 } else {
     $_SESSION["success"] = "Doctor information updated successfully.";
-    header("Location: /doctor/dashboard");
+    header("Location: /doctor/dashboard?id=" . $id);
     exit;
 }
 

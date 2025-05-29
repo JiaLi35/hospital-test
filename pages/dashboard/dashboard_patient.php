@@ -3,9 +3,27 @@ if (!isUserLoggedIn()){
   header("Location: /");
   exit;
 }
-?>
 
+  // TODO: 1. connect to database
+  $database = connectToDB();
+  // TODO: 2. get all the users
+    // get id from the url 
+  $id = $_GET["id"];
+  // TODO: 2.1
+  $sql = "SELECT * FROM patients WHERE id = :id";
+  // TODO: 2.2
+  $query = $database->prepare( $sql );
+  // TODO: 2.3
+  $query->execute([
+    "id" => $id
+  ]);
+  // TODO: 2.4 fetch
+  $patient = $query->fetch(); // get only the first row of the match data
+
+?>
 <?php require "parts/header.php"; ?>
+<main class="d-flex vh-100">
+  <?php require "parts/navbar.php"; ?>
     <div class="container mx-auto my-5" style="max-width: 800px;">
       <h1 class="h1 mb-4 text-center">Dashboard</h1>
       <?php require "parts/message_success.php"; ?>
@@ -21,7 +39,7 @@ if (!isUserLoggedIn()){
                 Manage Profile
               </h5>
               <div class="text-center mt-3">
-                <a href="/patient/manage-profile?id=<?= $_SESSION["user"]["id"]; ?>" class="btn btn-primary btn-sm"
+                <a href="/patient/manage-profile?id=<?= $patient["id"]; ?>" class="btn btn-primary btn-sm"
                   >Access</a
                 >
               </div>
@@ -56,5 +74,6 @@ if (!isUserLoggedIn()){
         >
       </div>
     </div>
+</main>
 
 <?php require "parts/footer.php"; ?>

@@ -1,11 +1,10 @@
-<?php   
-
-  if (!isUserLoggedIn()){
-    header("Location: /");
-    exit;
-  }
-  
+<?php 
+if (!isUserLoggedIn() || isAdmin() || isDoctor()){
+  header("Location: /");
+  exit;
+}
 ?>
+
 <?php require "parts/header.php"; ?>
 
 <div class="container my-5" >

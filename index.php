@@ -91,7 +91,7 @@ switch ($path) {
         
     
     // action routes 
-        // authe
+        // auth
         case '/auth/login':
             require "includes/auth/do_login.php";
             break;
@@ -138,7 +138,18 @@ switch ($path) {
                 require "includes/doctor/redirect.php";
                 break;    
 
+    // doctor actions
+        // doctor dashboard with id 
+        case '/doctor/redirect-dashboard':
+            require "includes/doctor/redirect-dashboard.php";
+            break;
+    
     // patient actions
+        // patient dashboard with id 
+            case '/patient/redirect-dashboard':
+                require "includes/patient/redirect-dashboard.php";
+                break;
+                
         // manage profile
             // add info to profile
             case '/patient/add-info':

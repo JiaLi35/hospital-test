@@ -8,9 +8,9 @@
             <?php if(isAdmin()) : ?>
                 <a href="/admin/dashboard" class="btn btn-link btn-sm">Access the Dashboard</a>
             <?php elseif (isDoctor()) : ?>
-                <a href="/doctor/dashboard" class="btn btn-link btn-sm">Access the Dashboard</a>
+                <a href="/doctor/redirect-dashboard" class="btn btn-link btn-sm">Access the Dashboard</a>
             <?php else : ?>
-                <a href="/patient/dashboard" class="btn btn-link btn-sm">Access the Dashboard</a>
+                <a href="/patient/redirect-dashboard" class="btn btn-link btn-sm">Access the Dashboard</a>
             <?php endif; ?>
         </div>
     <?php else : ?>

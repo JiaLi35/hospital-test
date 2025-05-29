@@ -12,7 +12,7 @@
     // get id from the url 
   $id = $_GET["id"];
   // TODO: 2.1
-  $sql = "SELECT * FROM doctors WHERE user_id = :id";
+  $sql = "SELECT * FROM doctors WHERE id = :id";
   // TODO: 2.2
   $query = $database->prepare( $sql );
   // TODO: 2.3

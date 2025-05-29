@@ -30,6 +30,6 @@ if (empty($name) || empty($ic) || empty($email) || empty($phone_number) || empty
     ]);
 }
     $_SESSION["success"] = "Your information has been updated successfully!";
-    header("Location: /patient/dashboard");
+    header("Location: /patient/dashboard?id=" . $id);
     exit;
 
