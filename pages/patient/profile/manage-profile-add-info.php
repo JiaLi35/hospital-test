@@ -1,5 +1,5 @@
 <?php 
-if (!isUserLoggedIn() || isAdmin() || isDoctor()){
+if (!isUserLoggedIn()){
   header("Location: /");
   exit;
 }

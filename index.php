@@ -25,50 +25,53 @@ switch ($path) {
         require "pages/logout.php";
         break;
 
-    // dashboard routes
-    case '/admin/dashboard':
-        require "pages/admin/dashboard_admin.php";
+    case '/find-doctor':
+        require "pages/find-doctor.php";
         break;
 
-    case '/doctor/dashboard':
-        require "pages/doctor/dashboard_doctor.php";
+    case '/doctor':
+        require "pages/doctor.php";
         break;
 
-    case '/patient/dashboard':
-        require "pages/patient/dashboard_patient.php";
-        break;
-    
     // admin pages 
-        // manage users
-        case '/manage-users':
-            require "pages/admin/users/manage-users.php";
+        case '/admin/dashboard':
+            require "pages/admin/dashboard_admin.php";
             break;
 
-        case '/manage-users-changepwd':
-            require "pages/admin/users/manage-users-changepwd.php";
-            break;
+        // manage users
+            case '/manage-users':
+                require "pages/admin/users/manage-users.php";
+                break;
+
+            case '/manage-users-changepwd':
+                require "pages/admin/users/manage-users-changepwd.php";
+                break;
 
         // manage doctors (admin)
-        case '/manage-doctors':
-            require "pages/admin/doctors/manage-doctors.php";
-            break;
-        
-        // add doctors login information
-        case '/manage-doctors-add-user':
-            require "pages/admin/doctors/manage-doctors-add-user.php";
-            break;
+            case '/manage-doctors':
+                require "pages/admin/doctors/manage-doctors.php";
+                break;
+            
+            // add doctors login information
+            case '/manage-doctors-add-user':
+                require "pages/admin/doctors/manage-doctors-add-user.php";
+                break;
 
-        // add doctors information
-        case '/manage-doctors-add-info':
-            require "pages/admin/doctors/manage-doctors-add-info.php";
-            break;
+            // add doctors information
+            case '/manage-doctors-add-info':
+                require "pages/admin/doctors/manage-doctors-add-info.php";
+                break;
 
-        // edit doctors information (in doctors table)
-        case '/manage-doctors-edit':
-            require "pages/admin/doctors/manage-doctors-edit.php";
-            break;
+            // edit doctors information (in doctors table)
+            case '/manage-doctors-edit':
+                require "pages/admin/doctors/manage-doctors-edit.php";
+                break;
 
     // patient pages
+        case '/patient/dashboard':
+            require "pages/patient/dashboard_patient.php";
+            break;
+
         // add info page (after sign up)
         case '/manage-profile-add-info':
             require "pages/patient/profile/manage-profile-add-info.php";
@@ -90,6 +93,10 @@ switch ($path) {
             break;
 
     // doctor pages   
+        case '/doctor/dashboard':
+            require "pages/doctor/dashboard_doctor.php";
+            break;
+            
         // edit profile / personal information
             case '/doctor/manage-profile':
                 require "pages/doctor/profile/manage-profile.php";
@@ -173,12 +180,12 @@ switch ($path) {
         
         // manage appointment
             // book new appointment (post data to database)
-            case 'patient/book':
+            case '/patient/book':
                 require "includes/appointment/book.php";
                 break;
 
             // cancel appointment (delete data from database)
-            case 'patient/cancel':
+            case '/patient/cancel':
                 require "includes/appointment/cancel.php";
                 break;
 }

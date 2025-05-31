@@ -4,6 +4,7 @@
     <?php if ( isUserLoggedIn() ) : ?>
         <div class="d-flex justify-content-center">
             <a href="/logout" class="btn btn-link btn-sm">Logout</a>
+            <a href="/find-doctor" class="btn btn-link btn-sm">Find a Doctor</a>
             <?php if(isAdmin()) : ?>
                 <a href="/admin/dashboard" class="btn btn-link btn-sm">Access the Dashboard</a>
             <?php elseif (isDoctor()) : ?>
