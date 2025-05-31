@@ -1,7 +1,6 @@
 <?php require "parts/header.php"; ?>
 <div class="container card mt-3">
     <h1> Hospital Management System </h1> 
-    <?php require "parts/message_success.php"; ?>
     <?php if ( isUserLoggedIn() ) : ?>
         <div class="d-flex justify-content-center">
             <a href="/logout" class="btn btn-link btn-sm">Logout</a>

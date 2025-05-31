@@ -26,7 +26,36 @@
 <?php require "parts/header.php"; ?>
 
 <main class="d-flex vh-100">
-  <?php require "parts/navbar.php"; ?>
+  <!-- sidebar -->
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+    <div href="/" class="d-flex align-items-center my-1 link-dark text-decoration-none">
+      <i class="bi bi-arrow-left fs-3 me-3 mt-1"></i>
+        <a href="/" class="fs-3 text-decoration-none text-black">Home</a>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="/doctor/dashboard?id=<?= $doctor["id"]; ?>" class="nav-link active">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/doctor/manage-appointments?id=<?= $doctor["id"]; ?>" class="nav-link link-dark">
+          Appointments
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <span class="d-flex ms-4 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong><?=$doctor["name"];?></strong> 
+      </span>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+<!-- sidebar end -->
     <div class="container mx-auto my-5" style="max-width: 800px;">
       <h1 class="h1 mb-4 text-center">Dashboard</h1>
       <?php require "parts/message_success.php"; ?>

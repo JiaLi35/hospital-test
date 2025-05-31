@@ -27,15 +27,15 @@ switch ($path) {
 
     // dashboard routes
     case '/admin/dashboard':
-        require "pages/dashboard/dashboard_admin.php";
+        require "pages/admin/dashboard_admin.php";
         break;
 
     case '/doctor/dashboard':
-        require "pages/dashboard/dashboard_doctor.php";
+        require "pages/doctor/dashboard_doctor.php";
         break;
 
     case '/patient/dashboard':
-        require "pages/dashboard/dashboard_patient.php";
+        require "pages/patient/dashboard_patient.php";
         break;
     
     // admin pages 
@@ -77,6 +77,16 @@ switch ($path) {
         // profile page
         case '/patient/manage-profile':
             require "pages/patient/profile/manage-profile.php";
+            break;
+        
+        // manage-appointments
+        case '/patient/manage-appointments':
+            require "pages/patient/appointments/manage-appointments.php";
+            break;
+        
+        // book new appointment
+        case '/patient/book-appointments':
+            require "pages/patient/appointments/book-appointments.php";
             break;
 
     // doctor pages   
@@ -149,7 +159,7 @@ switch ($path) {
             case '/patient/redirect-dashboard':
                 require "includes/patient/redirect-dashboard.php";
                 break;
-                
+
         // manage profile
             // add info to profile
             case '/patient/add-info':
@@ -159,5 +169,16 @@ switch ($path) {
             // edit profile / personal information
             case '/patient/edit':
                 require "includes/patient/edit.php";
+                break;
+        
+        // manage appointment
+            // book new appointment (post data to database)
+            case 'patient/book':
+                require "includes/appointment/book.php";
+                break;
+
+            // cancel appointment (delete data from database)
+            case 'patient/cancel':
+                require "includes/appointment/cancel.php";
                 break;
 }

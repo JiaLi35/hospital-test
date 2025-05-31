@@ -1,5 +1,5 @@
 <?php 
-if (!isUserLoggedIn() || isAdmin() || isDoctor()){
+if (!isUserLoggedIn()){
   header("Location: /");
   exit;
 }
@@ -23,9 +23,41 @@ if (!isUserLoggedIn() || isAdmin() || isDoctor()){
 ?>
 <?php require "parts/header.php"; ?>
 
+<main class="d-flex vh-100">
+<!-- sidebar -->
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+    <div href="/" class="d-flex align-items-center my-1 link-dark text-decoration-none">
+      <i class="bi bi-arrow-left fs-3 me-3 mt-1"></i>
+        <a href="/" class="fs-3 text-decoration-none text-black">Home</a>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link active">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/patient/manage-appointments?id=<?= $patient["id"]; ?>" class="nav-link link-dark">
+          Appointments
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <span class="d-flex ms-4 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong><?=$patient["name"];?></strong> 
+      </span>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+<!-- sidebar end -->
+
 <div class="container my-5" >
     <div class="d-flex justify-content-between align-items-center mb-2">
-      <h1 class="h1">Edit Your Details</h1>
+      <h1 class="h1">Your profile</h1>
     </div>
     <div class="card mb-2 p-4">
       <form method="POST" action="/patient/edit">  
@@ -78,11 +110,7 @@ if (!isUserLoggedIn() || isAdmin() || isDoctor()){
         </div>
       </form>
     </div>
-    <div class="text-center">
-      <a href="/patient/dashboard" class="btn btn-link btn-sm">
-        <i class="bi bi-arrow-left"></i> Back to Dashboard
-      </a>
-    </div>
   </div>
 
 <?php require "parts/footer.php"; ?>
+</main>
