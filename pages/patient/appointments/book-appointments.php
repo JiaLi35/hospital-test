@@ -1,6 +1,7 @@
 <?php 
 if (!isUserLoggedIn()){
-  header("Location: /");
+  $_SESSION["error"] = "Please create an account first before booking an appointment.";
+  header("Location: /signup");
   exit;
 }
 

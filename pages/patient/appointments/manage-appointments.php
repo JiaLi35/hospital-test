@@ -13,7 +13,7 @@
   // TODO: 2. get all the users
   // TODO: 2.1
   $sql = "SELECT * FROM appointments
-          WHERE patient_id = :patient_id
+          WHERE patient_id = :patient_id AND NOT status = 'Cancelled'
           ORDER BY appointments.id DESC";
   // TODO: 2.2
   $query = $database->prepare( $sql );
@@ -43,6 +43,7 @@
               <th scope="col">Specialty</th>
               <th scope="col">Date</th>
               <th scope="col">Time</th>
+              <th scope="col">Status</th>
               <th scope="col" class="text-end">Actions</th>
             </tr>
           </thead>
@@ -55,6 +56,14 @@
                 <td><?= $appointment["specialty"] ?></td>
                 <td><?= $appointment["date"] ?></td>
                 <td><?= $appointment["time"] ?></td>
+                <?php if ($appointment["status"] === "Pending") : ?>
+                    <td><span class="badge bg-warning"><?= $appointment["status"]; ?></span></td>
+                <?php elseif ($appointment["status"] === "Scheduled") : ?>
+                    <td><span class="badge bg-info"><?= $appointment["status"]; ?></span></td>
+                <?php elseif ($appointment["status"] === "Completed") : ?>
+                    <td><span class="badge bg-success"><?= $appointment["status"]; ?></span></td>
+                <?php endif; ?>
+
 
                 <td class="text-end">
                   <div class="d-flex justify-content-end">
@@ -82,7 +91,8 @@
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                           <!-- cancel button -->
                           <form method="POST" action="/patient/cancel">
-                            <input type="hidden" name="id" value="<?= $appointment["id"]?>">
+                            <input type="hidden" name="appointment_id" value="<?= $appointment["id"]?>">
+                            <input type="hidden" name="patient_id" value="<?= $appointment["patient_id"]?>">
                             <button class="btn btn-danger btn-sm">
                               <i class="bi bi-trash"></i> CONFIRM CANCELLATION
                             </button>

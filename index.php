@@ -102,6 +102,11 @@ switch ($path) {
                 require "pages/doctor/profile/manage-profile.php";
                 break;
         
+        // edit profile / personal information
+            case '/doctor/manage-appointments':
+                require "pages/doctor/appointments/manage-appointments.php";
+                break;
+        
     default:
         require "pages/home.php";
         break;
@@ -159,6 +164,11 @@ switch ($path) {
         // doctor dashboard with id 
         case '/doctor/redirect-dashboard':
             require "includes/doctor/redirect-dashboard.php";
+            break;
+        
+        // doctor confirm appointment / mark appointment as complete
+        case '/appointment/confirm':
+            require "includes/appointment/confirm.php";
             break;
     
     // patient actions

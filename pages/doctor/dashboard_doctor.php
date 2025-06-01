@@ -90,7 +90,7 @@
                 Manage Appointments
               </h5>
               <div class="text-center mt-3">
-                <a href="/" class="btn btn-primary btn-sm"
+                <a href="/doctor/manage-appointments?id=<?= $doctor["id"]; ?>" class="btn btn-primary btn-sm"
                   >Access</a
                 >
               </div>
