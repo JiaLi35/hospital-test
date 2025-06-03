@@ -73,3 +73,93 @@ function isDoctor(){
 
     return false; // still means else return false
 }
+
+// get user details from user_id 
+function GetUserDetailsByUID($id){
+  // TODO: 1. connect to database
+  $database = connectToDB();
+  // TODO: 2.1
+  $sql = "SELECT * FROM users WHERE id = :id";
+  // TODO: 2.2
+  $query = $database->prepare( $sql );
+  // TODO: 2.3
+  $query->execute([
+    "id" => $id
+  ]);
+  // TODO: 2.4 fetch
+  $user = $query->fetch(); // get only the first row of the match data
+
+  return $user;
+}
+
+// get patient details from id in url
+function GetPatientDetailsByID($id) {
+
+  // TODO: 1. connect to database
+  $database = connectToDB();
+  // TODO: 2.1
+  $sql = "SELECT * FROM patients WHERE id = :id";
+  // TODO: 2.2
+  $query = $database->prepare( $sql );
+  // TODO: 2.3
+  $query->execute([
+    "id" => $id
+  ]);
+  // TODO: 2.4 fetch
+  $patient = $query->fetch(); // get only the first row of the match data
+
+  return $patient;
+
+}
+
+// get patient details from the user id (useful when no patient id)
+function GetPatientByUID($user_id){
+    $database = connectToDB();
+
+    $sql = "SELECT * FROM patients WHERE user_id = :user_id";
+
+    $query = $database->prepare($sql);
+
+    $query->execute([
+        "user_id" => $user_id
+    ]);
+
+    $patient = $query->fetch();
+
+    return $patient;
+}
+
+// get doctor by doctor id (from url)
+function GetDoctorDetailsByID($id){
+  $database = connectToDB();
+  // TODO: 2.1
+  $sql = "SELECT * FROM doctors WHERE id = :id";
+  // TODO: 2.2
+  $query = $database->prepare( $sql );
+  // TODO: 2.3
+  $query->execute([
+    "id" => $id
+  ]);
+  // TODO: 2.4 fetch
+  $doctor = $query->fetch(); // get only the first row of the match data
+
+  return $doctor;
+}
+
+// get doctor by user id 
+function GetDoctorByUID($user_id) {
+    // return doctor id with user id 
+    $database = connectToDB();
+
+    $sql = "SELECT * FROM doctors WHERE user_id = :user_id";
+
+    $query = $database->prepare($sql);
+
+    $query->execute([
+        "user_id" => $user_id
+    ]);
+
+    $doctor = $query->fetch();
+
+    return $doctor;
+}

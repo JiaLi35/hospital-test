@@ -23,18 +23,59 @@
   ]);
   // TODO: 2.4
   $appointments = $query->fetchAll();
+
+  $patient = GetPatientDetailsByID($patient_id);
+
+  if ($patient["user_id"] !== $_SESSION["user"]["id"]){
+    header("Location: /");
+    exit;
+  }
 ?>
 
 <?php require "parts/header.php"; ?>
+
+<main class="d-flex vh-100">
+<!-- sidebar -->
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+    <div class="d-flex align-items-center my-1 link-dark text-decoration-none">
+        <a href="/" class="fs-3 text-decoration-none text-black"> <i class="bi bi-arrow-left fs-4"></i> Home</a>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link link-dark">
+          Your Profile
+        </a>
+      </li>
+      <li>
+        <a href="/find-doctor" class="nav-link link-dark">
+          Find a Doctor
+        </a>
+      </li>
+      <li>
+        <a href="/patient/manage-appointments?id=<?= $patient["id"]; ?>" class="nav-link active">
+          Appointments
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <span class="d-flex ms-4 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong><?=$patient["name"];?></strong> 
+      </span>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+<!-- sidebar end -->
+
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Appointments</h1>
-        <!-- <div class="text-end"> -->
-          <!-- <a href="/manage-doctors-add-user" class="btn btn-primary btn-sm">Book an Appointment</a> -->
-        <!-- </div> -->
+        <?php require "parts/message_success.php"; ?>
       </div>
       <div class="card mb-2 p-4">
-        <?php require "parts/message_success.php"; ?>
         <table class="table">
           <thead>
             <tr>
@@ -109,12 +150,6 @@
           </tbody>
         </table>
       </div>
-
-      <div class="text-center">
-        <a href="/patient/dashboard?id=<?=$_GET["id"];?>" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
-        >
-      </div>
     </div>
-
+</main>
 <?php require "parts/footer.php"; ?>

@@ -6,27 +6,21 @@
     exit;
   }
 
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-    // get id from the url 
+  // get id from the url 
   $id = $_GET["id"];
-  // TODO: 2.1
-  $sql = "SELECT * FROM doctors WHERE id = :id";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute([
-    "id" => $id
-  ]);
-  // TODO: 2.4 fetch
-  $doctor = $query->fetch(); // get only the first row of the match data
+
+  $doctor = GetDoctorDetailsByID($id);
+
+  if ($doctor["user_id"] !== $_SESSION["user"]["id"]){
+    header("Location: /");
+    exit;
+  }
 ?>
 
 <?php require "parts/header.php"; ?>
 
 <main class="d-flex vh-100">
-  <!-- sidebar -->
+<!-- sidebar -->
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
     <div href="/" class="d-flex align-items-center my-1 link-dark text-decoration-none">
       <i class="bi bi-arrow-left fs-3 me-3 mt-1"></i>
@@ -37,6 +31,11 @@
       <li>
         <a href="/doctor/dashboard?id=<?= $doctor["id"]; ?>" class="nav-link active">
           Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/doctor/manage-profile?id=<?= $doctor["id"]; ?>" class="nav-link link-dark">
+          Profile
         </a>
       </li>
       <li>
@@ -56,8 +55,9 @@
     </div>
   </div>
 <!-- sidebar end -->
+
     <div class="container mx-auto my-5" style="max-width: 800px;">
-      <h1 class="h1 mb-4 text-center">Dashboard</h1>
+      <h1 class="h1 mb-4 text-center">Doctor Dashboard</h1>
       <?php require "parts/message_success.php"; ?>
       <div class="row">
         <!-- manage profile start -->
@@ -98,11 +98,6 @@
           </div>
         </div>
         <!-- manage appointments end -->
-      </div>
-      <div class="mt-4 text-center">
-        <a href="/" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Return To Home</a
-        >
       </div>
     </div>
 </main>

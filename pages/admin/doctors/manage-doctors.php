@@ -62,7 +62,7 @@
                 <th scope="row"><?= $doctor["id"] ?></th>
                 <td>          
                   <?php if (!empty($doctor["image"])) : ?>
-                    <img src="<?= $doctor["image"]; ?>" style="width: 100px; height: 100px;">
+                    <img src="/<?= $doctor["image"]; ?>" style="width: 100px; height: 100px; object-fit:cover;">
                   <?php endif; ?>
                 </td>
                 <td><?= $doctor["name"] ?></td>

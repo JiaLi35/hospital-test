@@ -11,7 +11,7 @@ $gender = $_POST["gender"];
 
 if (empty($name) || empty($ic) || empty($email) || empty($phone_number) || empty($gender) || empty($id)){
     $_SESSION["error"] = "Please fill up all the fields.";
-    header("Location: /manage-posts-edit?id=" . $id);
+    header("Location: /patient/dashboard?id=" . $id);
     exit;  
 } else {
     $sql = "UPDATE patients 

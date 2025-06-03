@@ -3,6 +3,10 @@ if (!isUserLoggedIn()){
   header("Location: /");
   exit;
 }
+
+$id = $_GET["id"];
+
+$user = GetUserDetailsByUID($id);
 ?>
 
 <?php require "parts/header.php"; ?>
@@ -21,11 +25,11 @@ if (!isUserLoggedIn()){
             <div class="row">
               <div class="col">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name"/>
+                <input type="text" class="form-control" id="name" name="name" value="<?= $user["name"]; ?>"/>
               </div>
               <div class="col">
                 <label for="ic" class="form-label">NRIC no.</label>
-                <input type="number" class="form-control" id="ic" name="ic" />
+                <input type="number" maxlength="12" class="form-control" id="ic" name="ic" />
               </div>
             </div>
           </div>
@@ -44,6 +48,7 @@ if (!isUserLoggedIn()){
                   class="form-control"
                   id="email"
                   name="email"
+                  value="<?= $user["email"]; ?>"
                 />
               </div>
             </div>
@@ -56,7 +61,7 @@ if (!isUserLoggedIn()){
             </select>
           </div>
           <div class="d-grid">
-            <input type="hidden" name="user_id" value="<?= $_GET["id"]; ?>">
+            <input type="hidden" name="user_id" value="<?= $user["id"]; ?>">
             <button type="submit" class="btn btn-primary">Add</button>
           </div>
         </form>

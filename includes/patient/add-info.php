@@ -28,8 +28,10 @@ if (empty($name) || empty($ic) || empty($email) || empty($phone_number) || empty
         "gender" => $gender,
         "user_id" => $user_id
     ]);
+
+    $patient = GetPatientByUID($user_id)
     
     $_SESSION["success"] = "Patient profile created successfully.";
-    header("Location: /");
+    header("Location: /patient/dashboard?id=" . $patient["id"] );
     exit;
 }

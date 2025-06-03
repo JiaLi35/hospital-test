@@ -4,37 +4,35 @@ if (!isUserLoggedIn()){
   exit;
 }
 
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-    // get id from the url 
-  $id = $_GET["id"];
-  // TODO: 2.1
-  $sql = "SELECT * FROM patients WHERE id = :id";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute([
-    "id" => $id
-  ]);
-  // TODO: 2.4 fetch
-  $patient = $query->fetch(); // get only the first row of the match data
+$id = $_GET["id"];
+
+$patient = GetPatientDetailsByID($id);
+
+if ($patient["user_id"] !== $_SESSION["user"]["id"]){
+  header("Location: /");
+  exit;
+}
 
 ?>
+
 <?php require "parts/header.php"; ?>
 
 <main class="d-flex vh-100">
 <!-- sidebar -->
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-    <div href="/" class="d-flex align-items-center my-1 link-dark text-decoration-none">
-      <i class="bi bi-arrow-left fs-3 me-3 mt-1"></i>
-        <a href="/" class="fs-3 text-decoration-none text-black">Home</a>
+    <div class="d-flex align-items-center my-1 link-dark text-decoration-none">
+        <a href="/" class="fs-3 text-decoration-none text-black"> <i class="bi bi-arrow-left fs-4"></i> Home</a>
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
         <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link active">
-          Dashboard
+          Your Profile
+        </a>
+      </li>
+      <li>
+        <a href="/find-doctor" class="nav-link link-dark">
+          Find a Doctor
         </a>
       </li>
       <li>
@@ -57,14 +55,15 @@ if (!isUserLoggedIn()){
 
 <div class="container my-5" >
     <div class="d-flex justify-content-between align-items-center mb-2">
-      <h1 class="h1">Your profile</h1>
+      <h1 class="h1">Patient profile</h1>
     </div>
+    <!-- display success message -->
+    <?php require "parts/message_success.php"; ?>
+    <!-- display error message -->
+    <?php require "parts/message_error.php"; ?>
+
     <div class="card mb-2 p-4">
-      <form method="POST" action="/patient/edit">  
-      <!-- display success message -->
-      <?php require "parts/message_success.php"; ?>
-      <!-- display error message -->
-      <?php require "parts/message_error.php"; ?>       
+      <form method="POST" action="/patient/edit">        
         <div class="mb-3">
           <div class="row">
             <div class="col">
@@ -73,7 +72,7 @@ if (!isUserLoggedIn()){
             </div>
             <div class="col">
               <label for="ic" class="form-label">NRIC no.</label>
-              <input type="number" class="form-control" id="ic" name="ic" value="<?= $patient["ic"]; ?>"/>
+              <input type="number" maxlength="12" class="form-control" id="ic" name="ic" value="<?= $patient["ic"]; ?>"/>
             </div>
           </div>
         </div>
@@ -111,6 +110,5 @@ if (!isUserLoggedIn()){
       </form>
     </div>
   </div>
-
-<?php require "parts/footer.php"; ?>
 </main>
+<?php require "parts/footer.php"; ?>

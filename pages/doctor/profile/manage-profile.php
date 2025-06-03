@@ -6,26 +6,57 @@
     exit;
   }
 
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
     // get id from the url 
   $id = $_GET["id"];
-  // TODO: 2.1
-  $sql = "SELECT * FROM doctors WHERE id = :id";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute([
-    "id" => $id
-  ]);
-  // TODO: 2.4 fetch
-  $doctor = $query->fetch(); // get only the first row of the match data
+
+  $doctor = GetDoctorDetailsByID($id);
+
+  if ($doctor["user_id"] !== $_SESSION["user"]["id"]){
+    header("Location: /");
+    exit;
+  }
 ?>
 <?php require "parts/header.php"; ?>
-    <div class="container mx-auto my-5" style="max-width: 700px;">
+<main class="d-flex">
+<!-- sidebar -->
+<div class="d-flex flex-column p-3 bg-light" style="width: 280px;">
+    <div href="/" class="d-flex align-items-center my-1 link-dark text-decoration-none">
+      <i class="bi bi-arrow-left fs-3 me-3 mt-1"></i>
+        <a href="/" class="fs-3 text-decoration-none text-black">Home</a>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="/doctor/dashboard?id=<?= $doctor["id"]; ?>" class="nav-link link-dark">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/doctor/manage-profile?id=<?= $doctor["id"]; ?>" class="nav-link active">
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="/doctor/manage-appointments?id=<?= $doctor["id"]; ?>" class="nav-link link-dark">
+          Appointments
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <span class="d-flex ms-4 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong><?=$doctor["name"];?></strong> 
+      </span>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+<!-- sidebar end -->
+
+    <div class="container my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="h1">Edit Doctor</h1>
+        <h1 class="h1">Edit Profile</h1>
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_error.php"; ?>
@@ -73,11 +104,6 @@
           </div>
         </form>
       </div>
-      <div class="text-center">
-        <a href="/doctor/dashboard?id=<?=$doctor["id"];?>" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Doctors</a
-        >
-      </div>
     </div>
-
+</main>
 <?php require "parts/footer.php"; ?>

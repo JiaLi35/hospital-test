@@ -1,5 +1,5 @@
 <?php 
-if (!isUserLoggedIn()){
+if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
   $_SESSION["error"] = "Please create an account first before booking an appointment.";
   header("Location: /signup");
   exit;
@@ -86,7 +86,7 @@ if (!isUserLoggedIn()){
               </div>
               <div class="col">
                 <label for="ic" class="form-label">NRIC no.</label>
-                <input type="number" class="form-control" id="ic" name="ic" value="<?= $patient["ic"]; ?>"/>
+                <input type="number" maxlength="12" class="form-control" id="ic" name="ic" value="<?= $patient["ic"]; ?>"/>
               </div>
             </div>
           </div>

@@ -23,9 +23,53 @@
   ]);
   // TODO: 2.4
   $appointments = $query->fetchAll();
+
+  $doctor = GetDoctorDetailsByID($doctor_id);
+
+  if ($doctor["user_id"] !== $_SESSION["user"]["id"]){
+    header("Location: /");
+    exit;
+  }
 ?>
 
 <?php require "parts/header.php"; ?>
+<main class="d-flex vh-100">
+<!-- sidebar -->
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+    <div href="/" class="d-flex align-items-center my-1 link-dark text-decoration-none">
+      <i class="bi bi-arrow-left fs-3 me-3 mt-1"></i>
+        <a href="/" class="fs-3 text-decoration-none text-black">Home</a>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="/doctor/dashboard?id=<?= $doctor["id"]; ?>" class="nav-link link-dark">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/doctor/manage-profile?id=<?= $doctor["id"]; ?>" class="nav-link link-dark">
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="/doctor/manage-appointments?id=<?= $doctor["id"]; ?>" class="nav-link active">
+          Appointments
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <span class="d-flex ms-4 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong><?=$doctor["name"];?></strong> 
+      </span>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+<!-- sidebar end -->
+
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Appointments</h1>
@@ -74,7 +118,11 @@
                       <input type="hidden" name="appointment_id" value="<?= $appointment["id"]; ?>" />
                       <input type="hidden" name="doctor_id" value="<?= $appointment["doctor_id"]; ?>" />
                       <input type="hidden" name="status" value="<?= $appointment["status"]; ?>" />
-                      <button class="btn btn-sm btn-warning">Confirm</button> 
+                      <?php if ($appointment["status"] === "Pending") : ?>
+                        <button class="btn btn-sm btn-success">Confirm Appointment</button> 
+                      <?php elseif ($appointment["status"] === "Scheduled") : ?>
+                          <button class="btn btn-sm btn-success">Appointment Completed</button> 
+                      <?php endif; ?>
                     </form>
                   </div>
                 </td>
@@ -83,12 +131,6 @@
           </tbody>
         </table>
       </div>
-
-      <div class="text-center">
-        <a href="/doctor/dashboard?id=<?=$_GET["id"];?>" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
-        >
-      </div>
     </div>
-
+</main>
 <?php require "parts/footer.php"; ?>

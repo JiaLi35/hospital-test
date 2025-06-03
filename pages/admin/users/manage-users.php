@@ -10,7 +10,7 @@
   $database = connectToDB();
   // TODO: 2. get all the users
   // TODO: 2.1
-  $sql = "SELECT * FROM users";
+  $sql = "SELECT * FROM users ORDER BY id DESC";
   // TODO: 2.2
   $query = $database->prepare( $sql );
   // TODO: 2.3
@@ -40,9 +40,9 @@
             <!-- display all the users  -->
             <?php foreach ($users as $index => $user) : ?>
               <tr>
-                <th scope="row"><?= $index+1 ?></th>
-                <td><?= $user["name"] ?></td>
-                <td><?= $user["email"] ?></td>
+                <th scope="row"><?= $user["id"]; ?></th>
+                <td><?= $user["name"]; ?></td>
+                <td><?= $user["email"]; ?></td>
 
                 <?php if($user["role"] === "Patient") : ?>
                   <td><span class="badge bg-success"><?= $user["role"] ?></span></td>

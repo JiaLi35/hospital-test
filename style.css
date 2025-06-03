@@ -1,0 +1,8 @@
+.mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center; /* to center the text horizontally */
+  align-items: center; /* to center the text vertically */
+  height: 100%; /* to make the mask cover all of the bg image */
+  z-index: 100;
+}

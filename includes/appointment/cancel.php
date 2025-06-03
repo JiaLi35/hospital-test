@@ -13,6 +13,6 @@ $query->execute([
     "id" => $appointment_id
 ]);
 
-$_SESSION["success"] = "Appointment confirmed.";
+$_SESSION["success"] = "Appointment cancelled successfully.";
 header("Location: /patient/manage-appointments?id=" . $patient_id);
 exit;

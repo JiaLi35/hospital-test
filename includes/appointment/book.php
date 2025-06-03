@@ -40,6 +40,6 @@ if ( empty($doctor_name) || empty($specialty) || empty($date) || empty($time) ||
     ]);
     
     $_SESSION["success"] = "Appointment successfully booked! You can access it in your dashboard.";
-    header("Location: /");
+    header("Location: /patient/manage-appointments?id=" . $patient_id);
     exit;
 }
