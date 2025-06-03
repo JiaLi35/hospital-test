@@ -105,7 +105,7 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
                 <input 
                   type="number" 
                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
-                  maxlength="10" 
+                  maxlength="11" 
                   class="form-control" 
                   id="phone_number" 
                   name="phone_number" 

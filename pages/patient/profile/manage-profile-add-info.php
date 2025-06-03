@@ -36,7 +36,7 @@ $user = GetUserDetailsByUID($id);
                   class="form-control" 
                   id="ic" 
                   name="ic" 
-                  value="<?= $patient["ic"]; ?>"
+                  placeholder="Enter your IC without the dashes."
                 />
               </div>
             </div>
@@ -48,11 +48,11 @@ $user = GetUserDetailsByUID($id);
                 <input 
                   type="number" 
                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
-                  maxlength="10" 
+                  maxlength="11" 
                   class="form-control" 
                   id="phone_number" 
                   name="phone_number" 
-                  value="<?= $patient["phone_number"]; ?>"
+                  value=60
                 />
               </div>
               <div class="col">
