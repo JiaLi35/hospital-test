@@ -86,7 +86,15 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
               </div>
               <div class="col">
                 <label for="ic" class="form-label">NRIC no.</label>
-                <input type="number" maxlength="12" class="form-control" id="ic" name="ic" value="<?= $patient["ic"]; ?>"/>
+                <input 
+                  type="number" 
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                  maxlength="12" 
+                  class="form-control" 
+                  id="ic" 
+                  name="ic" 
+                  value="<?= $patient["ic"]; ?>"
+                />
               </div>
             </div>
           </div>
@@ -94,7 +102,15 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
             <div class="row">
               <div class="col">
                 <label for="phone_number" class="form-label">Phone Number</label>
-                <input type="number" class="form-control" id="phone_number" name="phone_number" value="<?= $patient["phone_number"]; ?>"/>
+                <input 
+                  type="number" 
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                  maxlength="10" 
+                  class="form-control" 
+                  id="phone_number" 
+                  name="phone_number" 
+                  value="<?= $patient["phone_number"]; ?>"
+                />
               </div>
               <div class="col">
                 <label for="email" class="form-label"
