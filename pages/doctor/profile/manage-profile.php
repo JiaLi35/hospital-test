@@ -90,7 +90,7 @@
               </div>
               <div class="col">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?= $doctor["email"]; ?>"/>
+                <input type="email" class="form-control" id="email" name="email" value="<?= $doctor["email"]; ?>" readonly/>
               </div>
             </div>
           </div>

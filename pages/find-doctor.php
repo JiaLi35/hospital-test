@@ -1,15 +1,32 @@
 <?php 
 
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-  $sql = "SELECT * FROM doctors";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute();
-  // TODO: 2.4 fetch
-  $doctors = $query->fetchAll(); // get only the first row of the match data
+  if (isset($_GET["filter"]) === true) {
+      $filter_keyword = $_GET["filter"];
+
+      // TODO: 1. connect to database
+      $database = connectToDB();
+      // TODO: 2. get all the users
+      $sql = "SELECT * FROM doctors WHERE specialty = :keyword";
+      // TODO: 2.2
+      $query = $database->prepare( $sql );
+      // TODO: 2.3
+      $query->execute([
+        "keyword" => $filter_keyword
+      ]);
+      // TODO: 2.4 fetch
+      $doctors = $query->fetchAll(); // get only the first row of the match data
+  } else {
+      // TODO: 1. connect to database
+      $database = connectToDB();
+      // TODO: 2. get all the users
+      $sql = "SELECT * FROM doctors";
+      // TODO: 2.2
+      $query = $database->prepare( $sql );
+      // TODO: 2.3
+      $query->execute();
+      // TODO: 2.4 fetch
+      $doctors = $query->fetchAll(); // get only the first row of the match data
+  }
 
   if(isUserLoggedIn()){
     $user = GetUserDetailsByUID($_SESSION["user"]["id"]);
@@ -20,14 +37,14 @@
 <?php require "parts/header.php"; ?>
 
 <!-- navbar start -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-white">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Real Hospital</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="navbar" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
             <a class="nav-link"
              href="/">Home</a>
@@ -65,20 +82,32 @@
 </nav>
 <!-- navbar end -->
 
-<!-- sort specialty button start -->
+<!-- filter specialty button start -->
 <div class="text-center my-3">
-  <h1> Find a Doctor </h1> 
-    <form method="POST" class="d-flex justify-content-center gap-3">
-      <p >Sort by Specialty: </p> 
-      <select>
-          <option>Select a Specialty</option>
+  <h1 class="my-5"> Find a Doctor </h1> 
+    <form method="GET" action="/find-doctor" class="d-flex justify-content-center gap-3">
+      <?php if (isset($_GET["filter"]) === true) : ?>
+      <select name="filter">
+          <option selected disabled hidden>Select a Specialty</option>
+          <option value="Cardiologist" <?= ($filter_keyword === "Cardiologist" ? "selected" : ""); ?>>Cardiologist</option>
+          <option value="Surgeon" <?= ($filter_keyword === "Surgeon" ? "selected" : ""); ?>>Surgeon</option>
+          <option value="Radiology" <?= ($filter_keyword === "Radiology" ? "selected" : ""); ?>>Radiology</option>
+          <option value="Internal Medicine" <?= ($filter_keyword === "Internal Medicine" ? "selected" : ""); ?>>Internal Medicine</option>
+      </select>
+      <?php else : ?>
+      <select name="filter">
+          <option selected disabled hidden>Select a Specialty</option>
           <option value="Cardiologist">Cardiologist</option>
           <option value="Surgeon">Surgeon</option>
+          <option value="Radiology">Radiology</option>
+          <option value="Internal Medicine">Internal Medicine</option>
       </select>
+      <?php endif; ?>
     <button class="btn btn-sm btn-primary">Sort</button>
+    <a href="/find-doctor" class="btn btn-dark">Reset</a>
   </form>
 </div>
-<!-- sort specialty button end -->
+<!-- filter specialty button end -->
  
 <div class="container my-4">
   <div class="row">

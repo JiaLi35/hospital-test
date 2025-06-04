@@ -73,6 +73,28 @@
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Appointments</h1>
+        <!-- sort start -->
+        <form method="GET" action="/doctor/manage-appointments?id=<?= $doctor["id"]; ?>" class="d-flex justify-content-center gap-3">
+            <p >Status: </p> 
+            <?php if (isset($_GET["filter"]) === true) : ?>
+            <select name="filter">
+                <option selected disabled hidden>Select a Specialty</option>
+                <option value="Pending" <?= ($filter_keyword === "Pending" ? "selected" : ""); ?>>Pending</option>
+                <option value="Scheduled" <?= ($filter_keyword === "Scheduled" ? "selected" : ""); ?>>Scheduled</option>
+                <option value="Completed" <?= ($filter_keyword === "Completed" ? "selected" : ""); ?>>Completed</option>
+            </select>
+            <?php else : ?>
+            <select name="filter">
+                <option selected disabled hidden>Select a Specialty</option>
+                <option value="Pending">Pending</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <?php endif; ?>
+          <button class="btn btn-sm btn-primary">Sort</button>
+          <a href="/find-doctor" class="btn btn-dark">Reset</a>
+        </form>
+        <!-- sort end -->
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_success.php"; ?>
@@ -118,7 +140,7 @@
                     <?php if ($appointment["status"] === "Pending") : ?>
                     <!-- edit appointment page -->
                     <form method="POST" action="/doctor/edit-appointments?id=<?= $appointment["id"]; ?>">
-                      <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                      <button class="btn btn-sm btn-primary" title="Reschedule"><i class="bi bi-pencil"></i></button>
                     </form>
                     <?php endif; ?>
                     <!-- confirm appointment button -->

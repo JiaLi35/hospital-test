@@ -77,36 +77,6 @@
                       class="btn btn-success btn-sm me-2"
                       ><i class="bi bi-pencil"></i>
                     </a>
-                  <!-- Button to trigger delete confirmation modal -->
-                  <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#doctorDeleteModal-<?= $doctor["id"]; ?>">
-                  <i class="bi bi-trash"></i>
-                  </button>
-                  <!-- Modal -->
-                  <div class="modal fade" id="doctorDeleteModal-<?= $doctor["id"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete this user?</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <p>You are tyring to delete this user: <?= $doctor["name"]; ?> ( <?= $doctor["email"]; ?> )</p>
-                          <p>This action cannot be reversed.</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <!-- delete button -->
-                          <form method="POST" action="/doctor/delete">
-                            <input type="hidden" name="id" value="<?= $doctor["id"]?>">
-                            <button class="btn btn-danger btn-sm">
-                              <i class="bi bi-trash"></i> DELETE
-                            </button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End of Modal -->
                   </div>
                 </td>
               </tr>

@@ -110,6 +110,7 @@ if ($patient["user_id"] !== $_SESSION["user"]["id"]){
                 id="email"
                 name="email"
                 value="<?= $patient["email"]; ?>"
+                readonly
               />
             </div>
           </div>

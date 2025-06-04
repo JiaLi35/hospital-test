@@ -5,6 +5,24 @@
     exit;
   }
 
+  if (isset($_GET["filter"]) === true) {
+    $filter_keyword = $_GET["filter"];
+
+    // TODO: 1. connect to database
+    $database = connectToDB();
+    // TODO: 2. get all the users
+    $sql = "SELECT * FROM appointments 
+            WHERE status = :keyword
+            ORDER BY appointments.id DESC";
+    // TODO: 2.2
+    $query = $database->prepare( $sql );
+    // TODO: 2.3
+    $query->execute([
+      "keyword" => $filter_keyword
+    ]);
+    // TODO: 2.4 fetch
+    $appointments = $query->fetchAll(); // get only the first row of the match data
+} else {
   // TODO: 1. connect to database
   $database = connectToDB();
   // TODO: 2. get all the users
@@ -17,6 +35,9 @@
   $query->execute();
   // TODO: 2.4
   $appointments = $query->fetchAll();
+}
+
+
 ?>
 
 <?php require "parts/header.php"; ?>
@@ -24,6 +45,29 @@
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Appointments</h1>
+        <!-- sort start -->
+        <form method="GET" action="/manage-appointments" class="d-flex justify-content-center gap-3">
+            <?php if (isset($_GET["filter"]) === true) : ?>
+            <select name="filter">
+                <option selected disabled hidden>Filter by Status</option>
+                <option value="Pending" <?= ($filter_keyword === "Pending" ? "selected" : ""); ?>>Pending</option>
+                <option value="Scheduled" <?= ($filter_keyword === "Scheduled" ? "selected" : ""); ?>>Scheduled</option>
+                <option value="Completed" <?= ($filter_keyword === "Completed" ? "selected" : ""); ?>>Completed</option>
+                <option value="Cancelled" <?= ($filter_keyword === "Cancelled" ? "selected" : ""); ?>>Cancelled</option>
+            </select>
+            <?php else : ?>
+            <select name="filter">
+                <option selected disabled hidden>Select a Specialty</option>
+                <option value="Pending">Pending</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+            <?php endif; ?>
+          <button class="btn btn-sm btn-primary">Sort</button>
+          <a href="/manage-appointments" class="btn btn-dark">Reset</a>
+        </form>
+        <!-- sort end -->
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_success.php"; ?>
@@ -36,8 +80,6 @@
               <th scope="col">Doctor name</th>
               <th scope="col">Date</th>
               <th scope="col">Time</th>
-              <th scope="col">IC</th>
-              <th scope="col">Phone Number</th>
               <th scope="col">Status</th>
               <th scope="col" class="text-center">Actions</th>
             </tr>
@@ -56,8 +98,6 @@
                     $time = $apt_time[0] . ":" . $apt_time[1];
                 ?>
                 <td><?= $time; ?></td>
-                <td><?= $appointment["ic"] ?></td>
-                <td><?= $appointment["phone_number"] ?></td>
                 <?php if ($appointment["status"] === "Pending") : ?>
                     <td><span class="badge bg-warning"><?= $appointment["status"]; ?></span></td>
                 <?php elseif ($appointment["status"] === "Scheduled") : ?>
@@ -70,8 +110,9 @@
 
                 <td class="text-end">
                   <div class="d-flex justify-content-end gap-2">
+                    <!-- <a href="/preview-appointment?id=<?= $appointment["id"]; ?>" class="btn btn-sm btn-primary" title="Preview"><i class="bi bi-eye"></i></a> -->
                     <!-- Button to trigger cancel confirmation modal -->
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#doctorDeleteModal-<?= $appointment["id"]; ?>">
+                    <button title="Delete" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#doctorDeleteModal-<?= $appointment["id"]; ?>">
                     <i class="bi bi-trash"></i>
                     </button>
                     <!-- Modal -->

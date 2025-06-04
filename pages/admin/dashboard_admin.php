@@ -44,7 +44,6 @@ if (!isUserLoggedIn() || !isAdmin()){
             </div>
           </div>
         </div>
-        <!-- only show this to admin only -->
         <div class="col">
           <div class="card mb-2">
             <div class="card-body">

@@ -6,23 +6,64 @@
     exit;
   }
 
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-  // TODO: 2.1
-  $sql = "SELECT * FROM users ORDER BY id DESC";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute();
-  // TODO: 2.4
-  $users = $query->fetchAll();
+  if (isset($_GET["filter"]) === true) {
+    $filter_keyword = $_GET["filter"];
+
+    // TODO: 1. connect to database
+    $database = connectToDB();
+    // TODO: 2. get all the users
+    $sql = "SELECT * FROM users 
+            WHERE role = :keyword
+            ORDER BY id DESC";
+    // TODO: 2.2
+    $query = $database->prepare( $sql );
+    // TODO: 2.3
+    $query->execute([
+      "keyword" => $filter_keyword
+    ]);
+    // TODO: 2.4 fetch
+    $users = $query->fetchAll(); // get only the first row of the match data
+    } else {
+      // TODO: 1. connect to database
+      $database = connectToDB();
+      // TODO: 2. get all the users
+      // TODO: 2.1
+      $sql = "SELECT * FROM users ORDER BY id DESC";
+      // TODO: 2.2
+      $query = $database->prepare( $sql );
+      // TODO: 2.3
+      $query->execute();
+      // TODO: 2.4
+      $users = $query->fetchAll();
+    }
+
 ?>
 
 <?php require "parts/header.php"; ?>
     <div class="container mx-auto my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Users</h1>
+        <!-- sort start -->
+        <form method="GET" action="/manage-users" class="d-flex justify-content-center gap-3">
+            <?php if (isset($_GET["filter"]) === true) : ?>
+            <select name="filter">
+                <option selected disabled hidden>Select a Specialty</option>
+                <option value="Patient" <?= ($filter_keyword === "Patient" ? "selected" : ""); ?>>Patient</option>
+                <option value="Doctor" <?= ($filter_keyword === "Doctor" ? "selected" : ""); ?>>Doctor</option>
+                <option value="admin" <?= ($filter_keyword === "admin" ? "selected" : ""); ?>>Admin</option>
+            </select>
+            <?php else : ?>
+            <select name="filter">
+                <option selected disabled hidden>Select a Specialty</option>
+                <option value="Patient">Patient</option>
+                <option value="Doctor">Doctor</option>
+                <option value="admin">Admin</option>
+            </select>
+            <?php endif; ?>
+          <button class="btn btn-sm btn-primary">Sort</button>
+          <a href="/manage-users" class="btn btn-dark">Reset</a>
+        </form>
+        <!-- sort end -->
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_success.php"; ?>

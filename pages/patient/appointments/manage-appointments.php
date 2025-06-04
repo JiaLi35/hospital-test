@@ -112,10 +112,10 @@
 
 
                 <td class="text-end">
-                  <div class="d-flex justify-content-end">
+                  <div class="d-flex justify-content-end gap-3">
                   <?php if ($appointment["status"] !== "Completed") : ?>
                   <!-- Button to trigger cancel confirmation modal -->
-                  <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#doctorDeleteModal-<?= $appointment["id"]; ?>">
+                  <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#doctorDeleteModal-<?= $appointment["id"]; ?>" title="Cancel Appointment">
                   <i class="bi bi-trash"></i>
                   </button>
                   <!-- Modal -->
@@ -148,6 +148,7 @@
                   </div>
                   <!-- End of Modal -->
                    <?php endif; ?>
+                   <a href="/preview-appointment?id=<?= $appointment["id"]?>" class="btn btn-sm btn-primary" title="Preview"><i class="bi bi-eye"></i></a>
                   </div>
                 </td>
               </tr>

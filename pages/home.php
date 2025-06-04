@@ -7,13 +7,13 @@
 <?php require "parts/header.php"; ?>
 
 <!-- navbar start -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-white">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Real Hospital</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -26,7 +26,7 @@
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?= $user["name"]; ?>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="left:-130%;">
                 <li>         
                     <?php if(isAdmin()) : ?>
                         <a href="/admin/dashboard" class="dropdown-item">Access the Dashboard</a>
@@ -61,37 +61,37 @@
         <div class="carousel-inner"> 
             <div class="carousel-item"> 
                 <div class="mask">
-                    <img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/09/Suite_Room_6-2.jpg" style="height:60vh; width:100vw; object-fit:cover;">
+                    <img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/09/Suite_Room_6-2.jpg" style="height:65vh; width:100vw; object-fit:cover;">
                 </div>
                 <div class="container"> 
-                    <div class="carousel-caption text-black text-end"> 
-                        <h1>Example headline.</h1> 
-                        <p>Some representative placeholder content for the first slide of the carousel.</p> 
-                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                    <div class="carousel-caption text-black text-start"> 
+                        <h1>5 Star Accommadation & Services</h1> 
+                        <p>Just as comfortable as your own home.</p> 
+                        <p><a class="btn btn-lg btn-primary" href="/">Browse Gallery</a></p>
                     </div> 
                 </div> 
             </div> 
             <div class="carousel-item"> 
                 <div class="mask">
-                    <img src="https://www.ihhhealthcare.com/images/ihhmylibraries/careers/doctor-bg-copy.webp?sfvrsn=75b022dc_1" style="height:60vh; width:100vw; object-fit:cover; object-position:100% 30%">
+                    <img src="https://www.ihhhealthcare.com/images/ihhmylibraries/careers/doctor-bg-copy.webp?sfvrsn=75b022dc_1" style="height:65vh; width:100vw; object-fit:cover; object-position:100% 30%">
                 </div>
                 <div class="container"> 
                     <div class="carousel-caption text-black"> 
-                        <h1>Another example headline.</h1> 
-                        <p>Some representative placeholder content for the second slide of the carousel.</p> 
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p> 
+                        <h1>Certified Doctors</h1> 
+                        <p>Guranteed for the best quality healthcare!</p> 
+                        <p><a class="btn btn-lg btn-primary" href="/find-doctor">Book an Appointment</a></p> 
                     </div> 
                 </div> 
             </div> 
             <div class="carousel-item active"> 
                 <div class="mask">
-                    <img src="https://islandhospital.com/wp-content/uploads/2023/01/hospital-about-us-patient-42.jpg" style="height:60vh; width:100vw; object-fit:cover;">
+                    <img src="https://islandhospital.com/wp-content/uploads/2023/01/hospital-about-us-patient-42.jpg" style="height:65vh; width:100vw; object-fit:cover;">
                 </div>
                 <div class="container"> 
-                    <div class="carousel-caption text-black text-start"> 
-                        <h1>One more for good measure.</h1> 
-                        <p>Some representative placeholder content for the third slide of this carousel.</p> 
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p> 
+                    <div class="carousel-caption text-black text-end"> 
+                        <h1>We Care for Life</h1> 
+                        <p>Your most trusted healthcare partner.</p> 
+                        <p><a class="btn btn-lg btn-primary" href="/sign-up">Sign Up Today</a></p> 
                     </div> 
                 </div> 
             </div> 
@@ -104,4 +104,76 @@
         </button> 
     </div>
 <!-- carousel end -->
+
+<div class="mx-4 my-3 d-flex justify-content-center align-items-center">
+  <a href="/" class="btn flex-fill py-3 text-white" style="background-color: #6cc16e; border-radius: 12px 0 0 12px;">
+    <i class="bi bi-calendar-event me-2"></i>
+    Events & Charities
+  </a>
+  <a href="/find-doctor" class="btn flex-fill py-3 text-white rounded-0" style="background-color: #f5b940;">
+    <i class="bi bi-search me-2"></i>
+    Find a Doctor
+  </a>
+  <a href="#packages" class="btn flex-fill py-3 text-white" style="background-color: #3cc0e7; border-radius: 0 12px 12px 0;">
+    <i class="bi bi-clipboard2-pulse me-2"></i>
+    Health Screening Packages
+  </a>
+</div>
+
+<div class="container my-5 p-5 fs-5">
+    <p> 
+        We believe that health is a precious asset, and we are here to help you protect and enhance it. Whether you need routine medical care, specialised treatments, or preventive health services, we are your trusted partner in health.
+    </p>
+    <p> 
+        As one of the leading private healthcare providers in Malaysia, KPJ Healthcare has been at the forefront of the industry for over four decades, devoted to improving the health and well-being of our patients.
+    </p>
+    <p> 
+        KPJ Healthcare – Your Preferred Healthcare Partner.
+    </p>       
+</div>
+
+<div class="container my-5">
+    <h3 class="text-center my-3" id="packages"> Packages & Promotions </h3> 
+    <div class="row">
+        <!-- column start -->
+        <div class="col">
+            <div class="card">
+                <img src="https://media.post.rvohealth.io/wp-content/uploads/sites/3/2022/08/eye_doctors_GettyImages1305317626_Thumb.jpg" class="card-img-top" alt="Eye" style="height:250px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Cataract Package</h5>
+                    <p class="card-text">Validity: 2025/06/05 - 2025/08/04</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!-- column end -->
+        <!-- column start -->
+        <div class="col">
+            <div class="card">
+                <img src="https://images.ctfassets.net/szez98lehkfm/5neyIVTpBbHEYK4t8BLFen/4dffc104d387fb3d70b7836137a565a8/MyIC_Article_92668?w=730&h=410&fm=jpg&fit=fill" class="card-img-top" alt="Physiotherapy" style="height:250px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Physiotherapy Package</h5>
+                    <p class="card-text">Validity: 2025/06/05 - 2025/10/31</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!-- column end -->
+        <!-- column start -->
+        <div class="col">
+            <div class="card">
+                <img src="https://images.ctfassets.net/szez98lehkfm/5neyIVTpBbHEYK4t8BLFen/4dffc104d387fb3d70b7836137a565a8/MyIC_Article_92668?w=730&h=410&fm=jpg&fit=fill" class="card-img-top" alt="..." style="height:250px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Package</h5>
+                    <p class="card-text">Validity: 2025/06/01 - 2025/09/30</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!-- column end -->
+    </div>
+</div>
+
+
+
 <?php require "parts/footer.php"; ?>

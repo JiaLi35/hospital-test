@@ -97,6 +97,11 @@ switch ($path) {
             require "pages/patient/appointments/book-appointments.php";
             break;
 
+        // book new appointment
+        case '/preview-appointment':
+            require "pages/patient/appointments/preview-appointment.php";
+            break;
+
     // doctor pages   
         case '/doctor/dashboard':
             require "pages/doctor/dashboard_doctor.php";
