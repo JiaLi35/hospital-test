@@ -5,22 +5,11 @@
     header("Location: /");
     exit;
   }
-
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-    // get id from the url 
+    
+  // get id from the url 
   $id = $_GET["id"];
-  // TODO: 2.1
-  $sql = "SELECT * FROM doctors WHERE id = :id";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute([
-    "id" => $id
-  ]);
-  // TODO: 2.4 fetch
-  $doctor = $query->fetch(); // get only the first row of the match data
+
+  $doctor = GetDoctorDetailsByID($id);
 ?>
 <?php require "parts/header.php"; ?>
     <div class="container mx-auto my-5" style="max-width: 700px;">

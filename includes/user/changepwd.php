@@ -24,6 +24,17 @@ if( empty($password) || empty($confirm_password) ) {
     ]);
 
     $_SESSION["success"] = "Password has been updated successfully";
-    header("Location: /manage-users");
-    exit;
+    if (isAdmin()){
+        header("Location: /manage-users");
+        exit;
+    } else if (isDoctor()) {
+        $doctor = GetDoctorByUID($id);
+        header("Location: /doctor/dashboard?id=" . $doctor["id"]);
+        exit;
+    } else {
+        $patient = GetPatientByUID($id);
+        header("Location: /patient/dashboard?id=" . $patient["id"]);
+        exit;
+    }
+    
 }

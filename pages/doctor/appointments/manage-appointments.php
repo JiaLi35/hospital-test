@@ -73,9 +73,6 @@
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Appointments</h1>
-        <!-- <div class="text-end"> -->
-          <!-- <a href="/manage-doctors-add-user" class="btn btn-primary btn-sm">Book an Appointment</a> -->
-        <!-- </div> -->
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_success.php"; ?>
@@ -100,7 +97,12 @@
                 <th scope="row"><?= $appointment["id"] ?></th>
                 <td><?= $appointment["patient_name"] ?></td>
                 <td><?= $appointment["date"] ?></td>
-                <td><?= $appointment["time"] ?></td>
+                <?php
+                    $apt_time = explode( ":", $appointment["time"] );
+
+                    $time = $apt_time[0] . ":" . $apt_time[1];
+                ?>
+                <td><?= $time; ?></td>
                 <td><?= $appointment["ic"] ?></td>
                 <td><?= $appointment["phone_number"] ?></td>
                 <?php if ($appointment["status"] === "Pending") : ?>
@@ -113,6 +115,12 @@
 
                 <td class="text-end">
                   <div class="d-flex justify-content-end gap-2">
+                    <?php if ($appointment["status"] === "Pending") : ?>
+                    <!-- edit appointment page -->
+                    <form method="POST" action="/doctor/edit-appointments?id=<?= $appointment["id"]; ?>">
+                      <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                    </form>
+                    <?php endif; ?>
                     <!-- confirm appointment button -->
                     <form method="POST" action="/appointment/confirm">
                       <input type="hidden" name="appointment_id" value="<?= $appointment["id"]; ?>" />

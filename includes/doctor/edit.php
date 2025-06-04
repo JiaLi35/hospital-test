@@ -60,12 +60,22 @@ if ( !empty( $image["name"] ) ) {
     ]);
 }
 
+$sql = "UPDATE appointments SET doctor_name = :doctor_name, specialty = :specialty WHERE doctor_id = :doctor_id";
+
+$query = $database->prepare($sql);
+
+$query->execute([
+    "doctor_id" => $id, 
+    "doctor_name" => $name, 
+    "specialty" => $specialty
+]);
+
 if (isAdmin()){    
     $_SESSION["success"] = "Doctor information updated successfully.";
     header("Location: /manage-doctors");
     exit;
 } else {
-    $_SESSION["success"] = "Doctor information updated successfully.";
+    $_SESSION["success"] = "Your information has been updated successfully.";
     header("Location: /doctor/dashboard?id=" . $id);
     exit;
 }

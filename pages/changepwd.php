@@ -1,11 +1,18 @@
 <?php
 
-// check if the user is not an admin (must be at very top)
-  if( !isAdmin() ){
+$id = $_GET["id"];
+
+  if (!isAdmin() && $_SESSION["user"]["id"] != $id) {
     header("Location: /");
     exit;
   }
 
+  if (isDoctor()){
+    $doctor = GetDoctorByUID($id);
+  } else {
+    $patient = GetPatientByUID($id);
+  }
+  
 ?>
 
 <?php require "parts/header.php"; ?>
@@ -47,9 +54,19 @@
         </form>
       </div>
       <div class="text-center">
+        <?php if (isAdmin()) : ?>
         <a href="/manage-users" class="btn btn-link btn-sm"
           ><i class="bi bi-arrow-left"></i> Back to Users</a
         >
+        <?php elseif (isDoctor()) : ?>
+          <a href="/doctor/dashboard?id=<?= $doctor["id"]; ?>" class="btn btn-link btn-sm"
+          ><i class="bi bi-arrow-left"></i> Back to Profile</a
+        >
+        <?php else : ?>
+          <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="btn btn-link btn-sm"
+          ><i class="bi bi-arrow-left"></i> Back to Profile</a
+        >
+        <?php endif; ?>
       </div>
     </div>
 

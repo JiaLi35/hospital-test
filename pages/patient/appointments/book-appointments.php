@@ -4,38 +4,18 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
   header("Location: /signup");
   exit;
 }
-
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
     // get id from the url 
   $id = $_GET["id"];
   $user_id = $_SESSION["user"]["id"];
-  // TODO: 2.1
-  $sql = "SELECT * FROM doctors WHERE id = :id";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute([
-    "id" => $id
-  ]);
-  // TODO: 2.4 fetch
-  $doctor = $query->fetch(); // get only the first row of the match data
 
-  $sql = "SELECT * FROM patients WHERE user_id = :user_id";
+  $doctor = GetDoctorDetailsByID($id); 
 
-  $query = $database->prepare($sql);
-
-  $query->execute([
-    "user_id" => $user_id
-  ]);
-
-  $patient = $query->fetch();
+  $patient = GetPatientByUID($user_id);
 ?>
 
 <?php require "parts/header.php"; ?>
 
-<div class="container my-5" >
+<div class="container mx-auto my-5 p-5" >
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Book Appointment</h1>
       </div>
@@ -51,11 +31,11 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
             <h3>Doctor's Info</h3>
               <div class="col">
                 <label for="doctor_name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="doctor_name" name="doctor_name" value="<?= $doctor["name"]; ?>"/>
+                <input type="text" class="form-control" id="doctor_name" name="doctor_name" value="<?= $doctor["name"]; ?>" readonly/>
               </div>
               <div class="col">
                 <label for="specialty" class="form-label">Specialty</label>
-                <input type="text" class="form-control" id="specialty" name="specialty" value="<?= $doctor["specialty"]; ?>" />
+                <input type="text" class="form-control" id="specialty" name="specialty" value="<?= $doctor["specialty"]; ?>" readonly/>
               </div>
             </div>
           </div>
@@ -66,11 +46,35 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
             <div class="row">
               <div class="col">
                 <label for="date" class="form-label">Select a Date</label>
-                <input type="date" class="form-control" id="date" name="date"/>
+                <input 
+                  type="date" 
+                  class="form-control" 
+                  id="date" 
+                  name="date" 
+                  min="<?= date("Y-m-d", strtotime('tomorrow'));?>" 
+                  max="<?= date("Y-m-d", strtotime('+1 year'));?>" 
+                />
               </div>
               <div class="col">
                 <label for="time" class="form-label">Select a Time</label>
-                <input type="time" class="form-control" id="time" name="time"/>
+                <select id="time" class="form-control" name="time">
+                  <option value="9:00">9:00</option>
+                  <option value="9:30">9:30</option>
+                  <option value="10:00">10:00</option>
+                  <option value="10:30">10:30</option>
+                  <option value="11:00">11:00</option>
+                  <option value="11:30">11:30</option>
+                  <option value="12:00">12:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="13:30">13:30</option>
+                  <option value="14:00">14:00</option>
+                  <option value="14:30">14:30</option>
+                  <option value="15:00">15:00</option>
+                  <option value="15:30">15:30</option>
+                  <option value="16:00">16:00</option>
+                  <option value="16:30">16:30</option>
+                  <option value="17:00">17:00</option>
+                </select>
               </div>
             </div>
           </div>

@@ -55,7 +55,7 @@
                 <td class="text-end">
                   <div class="d-flex justify-content-end">
                     <a
-                      href="/manage-users-changepwd?id=<?= $user["id"]; ?>"
+                      href="/changepwd?id=<?= $user["id"]; ?>"
                       class="btn btn-warning btn-sm me-2"
                       ><i class="bi bi-key"></i
                     ></a>

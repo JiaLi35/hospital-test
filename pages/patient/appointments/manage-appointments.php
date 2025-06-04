@@ -36,20 +36,20 @@
 
 <main class="d-flex vh-100">
 <!-- sidebar -->
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="">
     <div class="d-flex align-items-center my-1 link-dark text-decoration-none">
         <a href="/" class="fs-3 text-decoration-none text-black"> <i class="bi bi-arrow-left fs-4"></i> Home</a>
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link link-dark">
-          Your Profile
+        <a href="/find-doctor" class="nav-link link-dark">
+          Find a Doctor
         </a>
       </li>
       <li>
-        <a href="/find-doctor" class="nav-link link-dark">
-          Find a Doctor
+        <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link link-dark">
+          Your Profile
         </a>
       </li>
       <li>
@@ -60,7 +60,7 @@
     </ul>
     <hr>
     <div class="dropdown">
-      <span class="d-flex ms-4 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="d-flex mx-3 align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
         <strong><?=$patient["name"];?></strong> 
       </span>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
@@ -96,7 +96,12 @@
                 <td><?= $appointment["doctor_name"] ?></td>
                 <td><?= $appointment["specialty"] ?></td>
                 <td><?= $appointment["date"] ?></td>
-                <td><?= $appointment["time"] ?></td>
+                <?php
+                    $apt_time = explode( ":", $appointment["time"] );
+
+                    $time = $apt_time[0] . ":" . $apt_time[1];
+                ?>
+                <td><?= $time; ?></td>
                 <?php if ($appointment["status"] === "Pending") : ?>
                     <td><span class="badge bg-warning"><?= $appointment["status"]; ?></span></td>
                 <?php elseif ($appointment["status"] === "Scheduled") : ?>
@@ -108,7 +113,7 @@
 
                 <td class="text-end">
                   <div class="d-flex justify-content-end">
-                    <a href="/"> </a>
+                  <?php if ($appointment["status"] !== "Completed") : ?>
                   <!-- Button to trigger cancel confirmation modal -->
                   <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#doctorDeleteModal-<?= $appointment["id"]; ?>">
                   <i class="bi bi-trash"></i>
@@ -118,13 +123,12 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to cancel this appointment?</h1>
+                          <h1 class="modal-title fs-5 text-start" id="exampleModalLabel">Are you sure you want to cancel this appointment?</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                          <p>You are tyring to cancel an appointment with Dr. 
-                          <br>  
-                          <?=$appointment["doctor_name"];?> at <?= $appointment["date"];?>, <?= $appointment["time"];?>
+                        <div class="modal-body text-start">
+                          <p>You are trying to cancel an appointment with Dr. <?=$appointment["doctor_name"];?> 
+                           at <?= $appointment["date"];?>, <?= $appointment["time"];?>
                         </p>
                           <p>This action cannot be reversed.</p>
                         </div>
@@ -143,6 +147,7 @@
                     </div>
                   </div>
                   <!-- End of Modal -->
+                   <?php endif; ?>
                   </div>
                 </td>
               </tr>

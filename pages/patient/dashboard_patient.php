@@ -26,13 +26,13 @@ if ($patient["user_id"] !== $_SESSION["user"]["id"]){
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link active">
-          Your Profile
+        <a href="/find-doctor" class="nav-link link-dark">
+          Find a Doctor
         </a>
       </li>
       <li>
-        <a href="/find-doctor" class="nav-link link-dark">
-          Find a Doctor
+        <a href="/patient/dashboard?id=<?= $patient["id"]; ?>" class="nav-link active">
+          Your Profile
         </a>
       </li>
       <li>
@@ -56,6 +56,7 @@ if ($patient["user_id"] !== $_SESSION["user"]["id"]){
 <div class="container my-5" >
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h1 class="h1">Patient profile</h1>
+      <a href="/changepwd?id=<?= $_SESSION["user"]["id"]; ?>" class="btn btn-sm btn-warning"><i class="bi bi-key"></i> Change Password </a>
     </div>
     <!-- display success message -->
     <?php require "parts/message_success.php"; ?>
@@ -80,6 +81,7 @@ if ($patient["user_id"] !== $_SESSION["user"]["id"]){
                 id="ic" 
                 name="ic" 
                 value="<?= $patient["ic"]; ?>"
+                readonly
               />
             </div>
           </div>

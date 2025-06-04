@@ -57,6 +57,7 @@
     <div class="container my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Edit Profile</h1>
+        <a href="/changepwd?id=<?= $_SESSION["user"]["id"]; ?>" class="btn btn-sm btn-warning"><i class="bi bi-key"></i> Change Password </a>
       </div>
       <div class="card mb-2 p-4">
         <?php require "parts/message_error.php"; ?>

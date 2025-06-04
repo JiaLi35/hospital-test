@@ -25,6 +25,10 @@ switch ($path) {
         require "pages/logout.php";
         break;
 
+    case '/changepwd':
+        require "pages/changepwd.php";
+        break;
+
     case '/find-doctor':
         require "pages/find-doctor.php";
         break;
@@ -41,10 +45,6 @@ switch ($path) {
         // manage users
             case '/manage-users':
                 require "pages/admin/users/manage-users.php";
-                break;
-
-            case '/manage-users-changepwd':
-                require "pages/admin/users/manage-users-changepwd.php";
                 break;
 
         // manage doctors (admin)
@@ -65,6 +65,11 @@ switch ($path) {
             // edit doctors information (in doctors table)
             case '/manage-doctors-edit':
                 require "pages/admin/doctors/manage-doctors-edit.php";
+                break;
+        
+        // manage appointments (admin)
+            case '/manage-appointments':
+                require "pages/admin/appointments/manage-appointments.php";
                 break;
 
     // patient pages
@@ -102,9 +107,14 @@ switch ($path) {
                 require "pages/doctor/profile/manage-profile.php";
                 break;
         
-        // edit profile / personal information
+        // see appointments
             case '/doctor/manage-appointments':
                 require "pages/doctor/appointments/manage-appointments.php";
+                break;
+
+        // edit appointment date / time page
+            case '/doctor/edit-appointments':
+                require "pages/doctor/appointments/edit-appointments.php";
                 break;
         
     default:
@@ -122,17 +132,17 @@ switch ($path) {
             require "includes/auth/do_signup.php";
             break;
 
+        // set up the action route for edit user 
+        case '/user/changepwd':
+            require "includes/user/changepwd.php";
+            break;    
+
     // admin actions
         // manage users
             // set up the action route for delete user 
             case '/user/delete':
             require "includes/user/delete.php";
             break;
-            
-            // set up the action route for edit user 
-            case '/user/changepwd':
-            require "includes/user/changepwd.php";
-            break;    
 
         // manage doctors
             // set up the action route for add doctor login information into users table
@@ -159,6 +169,12 @@ switch ($path) {
             case '/doctor/redirect':
                 require "includes/doctor/redirect.php";
                 break;    
+        
+        // manage appointments
+            // delete appointments
+            case '/appointment/delete':
+                require "includes/appointment/delete.php";
+                break;
 
     // doctor actions
         // doctor dashboard with id 
@@ -169,6 +185,11 @@ switch ($path) {
         // doctor confirm appointment / mark appointment as complete
         case '/appointment/confirm':
             require "includes/appointment/confirm.php";
+            break;
+
+        // doctor edit appointment date / time
+        case '/appointment/edit':
+            require "includes/appointment/edit.php";
             break;
     
     // patient actions
