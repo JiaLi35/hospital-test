@@ -123,7 +123,7 @@
 <!-- buttons end -->
 
 <!-- packages start -->
-<div class="container text-center my-5 p-5 fs-5">
+<div class="container text-center my-5 p-5 fs-5" id="packages">
     <h1 class="my-5"> Packages & Promotions </h1>
     <p> 
         Our health packages provide top-quality preventive care for individuals and families. With a focus on care for life, we offer screenings and tests to detect potential health issues early, supporting well-being and peace of mind.
@@ -159,9 +159,9 @@
         <!-- column start -->
         <div class="col">
             <div class="card">
-                <img src="https://images.ctfassets.net/szez98lehkfm/5neyIVTpBbHEYK4t8BLFen/4dffc104d387fb3d70b7836137a565a8/MyIC_Article_92668?w=730&h=410&fm=jpg&fit=fill" class="card-img-top" alt="..." style="height:250px; object-fit:cover;">
+                <img src="https://aradamansaramedicalcentre.com/storage/app/media/2025/4/health-screening-banner-mobile.png" class="card-img-top" alt="..." style="height:250px; object-fit:cover;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Package</h5>
+                    <h5 class="card-title">Health Screening Package</h5>
                     <p class="card-text">Validity: 2025/06/01 - 2025/09/30</p>
                     <a href="#" class="btn btn-primary">Learn More</a>
                 </div>

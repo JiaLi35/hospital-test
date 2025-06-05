@@ -22,6 +22,15 @@ if (!isDoctor() ){
 ?>
 
 <?php require "parts/header.php"; ?>
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/doctor/manage-appointments?id=<?=$appointment["doctor_id"];?>">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
 
 <div class="container mx-auto my-5 p-5" >
       <div class="d-flex justify-content-between align-items-center mb-2">
