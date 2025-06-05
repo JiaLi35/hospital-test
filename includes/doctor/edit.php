@@ -70,6 +70,17 @@ $query->execute([
     "specialty" => $specialty
 ]);
 
+$doctor = GetDoctorDetailsByID($id);
+
+$sql = "UPDATE users SET name = :name WHERE id = :id";
+
+$query = $database->prepare($sql);
+
+$query->execute([
+    "id" => $doctor["user_id"], 
+    "name" => $name
+]);
+
 if (isAdmin()){    
     $_SESSION["success"] = "Doctor information updated successfully.";
     header("Location: /manage-doctors");

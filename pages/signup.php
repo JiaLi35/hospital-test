@@ -1,9 +1,11 @@
 <?php require "parts/header.php"; ?>
-
-    <div class="container my-5 mx-auto" style="max-width: 500px;">
-      <h1 class="h1 mb-4 text-center">Sign Up a New Account</h1>
-
-      <div class="card p-4">
+<div class="row m-0 p-0">
+<div class="col m-0 p-0">
+    <img src="https://media.istockphoto.com/id/959978636/photo/a-group-of-young-adults-gathering.jpg?s=612x612&w=0&k=20&c=Z0sUP5sprFB6m8dJejFfCF1X3mKXuBgwMesY4WOiI7k=" style="height:100vh; width:65vw; object-fit:cover;">
+  </div>
+  <div class="col m-0 p-0 d-flex justify-content-center align-items-center">
+    <div class="my-5">
+      <h1 class="h1 mb-4 text-center">Register</h1>
 
         <!-- display error message -->
         <?php require "parts/message_error.php"; ?>
@@ -39,11 +41,10 @@
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary btn-fu">
-              Sign Up
+              Register
             </button>
           </div>
         </form>
-      </div>
 
       <!-- links -->
       <div
@@ -58,5 +59,7 @@
         ></a>
       </div>
     </div>
+  </div>
+</div>
 
 <?php require "parts/footer.php"; ?>

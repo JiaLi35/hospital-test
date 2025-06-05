@@ -14,10 +14,19 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
 ?>
 
 <?php require "parts/header.php"; ?>
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/find-doctor">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
 
 <div class="container mx-auto my-5 p-5" >
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="h1">Book Appointment</h1>
+        <h1 class="h1"> <i class="bi bi-calendar"> </i> Book Appointment</h1>
       </div>
       <div class="card mb-2 p-4">
         <form method="POST" action="/patient/book">  
@@ -141,14 +150,9 @@ if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
           <div class="d-grid">
             <input type="hidden" name="patient_id" value="<?= $patient["id"]; ?>">
             <input type="hidden" name="doctor_id" value="<?= $doctor["id"]; ?>">
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">Book Now</button>
           </div>
         </form>
-      </div>
-      <div class="text-center">
-        <a href="/doctor?id=<?= $doctor['id']; ?>" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Doctors</a
-        >
       </div>
     </div>
 

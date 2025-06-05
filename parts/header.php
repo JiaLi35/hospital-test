@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
+    <link rel="stylesheet" href="style.css">
     <style type="text/css">
       body {
         background: #f1f1f1;

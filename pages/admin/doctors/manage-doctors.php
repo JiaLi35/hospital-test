@@ -26,6 +26,16 @@
 ?>
 
 <?php require "parts/header.php"; ?>
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/admin/dashboard">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
+
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Doctors</h1>
@@ -83,12 +93,6 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-      </div>
-
-      <div class="text-center">
-        <a href="/admin/dashboard" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
-        >
       </div>
     </div>
 

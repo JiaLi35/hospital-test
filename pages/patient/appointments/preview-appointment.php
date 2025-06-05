@@ -19,23 +19,36 @@
 ?>
 
 <?php require "parts/header.php"; ?>
-<div class="container my-5 text-center" style="max-width: 500px;">
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/patient/manage-appointments?id=<?= $appointment["patient_id"];?>">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
+<div class="position-fixed" style="left:5%; bottom:5%; z-index:10">
+    <button id="download-btn" class="btn btn-sm btn-primary px-3" title="Download as PDF"><i class="bi bi-download me-2"></i>Download As PDF</button>
+</div>
+<div class="container my-5 text-center" style="max-width: 700px;">
     <div class="card p-5">
-        <h1 class="my-5 border-bottom border-primary pb-3"> Appointment Details </h1> 
+        <h1 class="my-4 border-bottom border-primary pb-3"> Appointment Details </h1> 
+        <p> <b>Status:</b> <?=$appointment["status"];?> </p>
         <h3 class="my-3"> Doctor's Info </h3> 
             <div class="row">
                 <div class="col">
-                    <p class="mb-4">Doctor Name: <?= $appointment["doctor_name"]; ?></p>
+                    <p class="mb-4"><b>Doctor Name:</b> <?= $appointment["doctor_name"]; ?></p>
                 </div>
                 <div class="col">
-                    <p class="mb-4">Specialty: <?= $appointment["specialty"]; ?></p>
+                    <p class="mb-4"><b>Specialty:</b> <?= $appointment["specialty"]; ?></p>
                 </div>
             </div>
         <hr> 
         <h3 class="my-3"> Scheduled Date & Time </h3> 
         <div class="row">
             <div class="col">
-                <p class="mb-4">Date: <?= $appointment["date"]; ?></p>
+                <p class="mb-4"><b>Date:</b> <?= $appointment["date"]; ?></p>
             </div>
             <div class="col">
                 <?php
@@ -43,34 +56,29 @@
 
                     $time = $apt_time[0] . ":" . $apt_time[1];
                 ?>
-                <p class="mb-4">Time: <?= $time; ?></p>
+                <p class="mb-4"><b>Time:</b> <?= $time; ?></p>
             </div>
         </div>
         <hr> 
         <h3 class="my-3"> Patient's Info </h3> 
             <div class="row">
-                <div class="col">
-                    <p class="mb-4">Patient Name: <?= $appointment["patient_name"]; ?></p>
+                <div class="col-6">
+                    <p class="mb-4"><b>Patient Name:</b> <?= $appointment["patient_name"]; ?></p>
                 </div>
-                <div class="col">
-                    <p class="mb-4">NRIC No.: <?= $appointment["ic"]; ?></p>
+                <div class="col-6">
+                    <p class="mb-4"><b>NRIC No.:</b> <?= $appointment["ic"]; ?></p>
                 </div>
-                <div class="col">
-                    <p class="mb-4">Phone Number: <?= $appointment["phone_number"]; ?></p>
+                <div class="col-6">
+                    <p class="mb-4"><b>Phone Number:</b> <?= $appointment["phone_number"]; ?></p>
                 </div>
-                <div class="col">
-                    <p class="mb-4">Email: <?= $appointment["email"]; ?></p>
+                <div class="col-6">
+                    <p class="mb-4"><b>Email:</b> <?= $appointment["email"]; ?></p>
                 </div>
-                <div class="col">
-                    <p class="mb-4">Gender: <?= $appointment["gender"]; ?></p>
+                <div class="col text-center">
+                    <p class="mb-4"><b>Gender:</b> <?= $appointment["gender"]; ?></p>
                 </div>
             </div>
         <hr> 
     </div>
-      <div class="text-center mt-3">
-        <a href="/patient/manage-appointments?id=<?= $appointment["patient_id"]; ?>" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back</a
-        >
-      </div>
-    </div>
+</div>
 <?php require "parts/footer.php"; ?>

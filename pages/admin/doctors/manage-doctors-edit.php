@@ -12,6 +12,15 @@
   $doctor = GetDoctorDetailsByID($id);
 ?>
 <?php require "parts/header.php"; ?>
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/manage-doctors">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
     <div class="container mx-auto my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Edit Doctor</h1>
@@ -69,11 +78,6 @@
             <button type="submit" class="btn btn-primary">Update</button>
           </div>
         </form>
-      </div>
-      <div class="text-center">
-        <a href="/manage-doctors" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Doctors</a
-        >
       </div>
     </div>
 

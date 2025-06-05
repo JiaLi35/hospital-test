@@ -1,9 +1,12 @@
 <?php require "parts/header.php"; ?>
 
-    <div class="container my-5 mx-auto" style="max-width: 500px;">
+<div class="row m-0 p-0">
+  <div class="col m-0 p-0">
+    <img src="https://www.bcie.org/fileadmin/_processed_/6/a/csm_hospital_web_b185b30ce1.jpg" style="height:100vh;">
+  </div>
+  <div class="col m-0 p-0 d-flex justify-content-center align-items-center">
+    <div class="my-5">
       <h1 class="h1 mb-4 text-center">Login</h1>
-
-      <div class="card p-4">
         <!-- display success message -->
         <?php require "parts/message_success.php"; ?>
         <!-- display error message -->
@@ -35,7 +38,6 @@
             <button type="submit" class="btn btn-primary">Login</button>
           </div>
         </form>
-      </div>
 
       <!-- links -->
       <div
@@ -48,7 +50,8 @@
           >Don't have an account? Sign up here
           <i class="bi bi-arrow-right-circle"></i
         ></a>
-      </div>
     </div>
+  </div>
+</div>
 
 <?php require "parts/footer.php"; ?>

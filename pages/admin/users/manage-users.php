@@ -40,6 +40,16 @@
 ?>
 
 <?php require "parts/header.php"; ?>
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/admin/dashboard">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
+ 
     <div class="container mx-auto my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Users</h1>
@@ -47,14 +57,14 @@
         <form method="GET" action="/manage-users" class="d-flex justify-content-center gap-3">
             <?php if (isset($_GET["filter"]) === true) : ?>
             <select name="filter">
-                <option selected disabled hidden>Select a Specialty</option>
+                <option selected disabled hidden>Select a Role</option>
                 <option value="Patient" <?= ($filter_keyword === "Patient" ? "selected" : ""); ?>>Patient</option>
                 <option value="Doctor" <?= ($filter_keyword === "Doctor" ? "selected" : ""); ?>>Doctor</option>
                 <option value="admin" <?= ($filter_keyword === "admin" ? "selected" : ""); ?>>Admin</option>
             </select>
             <?php else : ?>
             <select name="filter">
-                <option selected disabled hidden>Select a Specialty</option>
+                <option selected disabled hidden>Select a Role</option>
                 <option value="Patient">Patient</option>
                 <option value="Doctor">Doctor</option>
                 <option value="admin">Admin</option>
@@ -137,12 +147,6 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-      </div>
-
-      <div class="text-center">
-        <a href="/admin/dashboard" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
-        >
       </div>
     </div>
 

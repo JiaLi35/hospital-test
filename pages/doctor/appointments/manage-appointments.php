@@ -6,25 +6,52 @@
     exit;
   }
 
-  $doctor_id = $_GET["id"];
+  if (isset($_GET["filter"]) === true) {
 
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-  // TODO: 2.1
-  $sql = "SELECT * FROM appointments
-          WHERE doctor_id = :doctor_id AND NOT status = 'Cancelled'
-          ORDER BY appointments.id DESC";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute([
-    "doctor_id" => $doctor_id
-  ]);
-  // TODO: 2.4
-  $appointments = $query->fetchAll();
+    $filter_keyword = $_GET["filter"];
+    $doctor_id = $_GET["id"];
 
-  $doctor = GetDoctorDetailsByID($doctor_id);
+    // TODO: 1. connect to database
+    $database = connectToDB();
+    // TODO: 2. get all the users
+    $sql = "SELECT * FROM appointments
+            WHERE doctor_id = :doctor_id AND status = :keyword
+            ORDER BY appointments.id DESC";
+    // TODO: 2.2
+    $query = $database->prepare( $sql );
+    // TODO: 2.3
+    $query->execute([
+      "doctor_id" => $doctor_id,
+      "keyword" => $filter_keyword
+    ]);
+    // TODO: 2.4 fetch
+    $appointments = $query->fetchAll(); // get only the first row of the match data
+
+    $doctor = GetDoctorDetailsByID($doctor_id);
+
+  } else {
+
+    $doctor_id = $_GET["id"];
+
+    // TODO: 1. connect to database
+    $database = connectToDB();
+    // TODO: 2. get all the users
+    // TODO: 2.1
+    $sql = "SELECT * FROM appointments
+            WHERE doctor_id = :doctor_id AND NOT status = 'Cancelled'
+            ORDER BY appointments.id DESC";
+    // TODO: 2.2
+    $query = $database->prepare( $sql );
+    // TODO: 2.3
+    $query->execute([
+      "doctor_id" => $doctor_id
+    ]);
+    // TODO: 2.4
+    $appointments = $query->fetchAll();
+
+    $doctor = GetDoctorDetailsByID($doctor_id);
+
+  }
 
   if ($doctor["user_id"] !== $_SESSION["user"]["id"]){
     header("Location: /");
@@ -74,25 +101,25 @@
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Manage Appointments</h1>
         <!-- sort start -->
-        <form method="GET" action="/doctor/manage-appointments?id=<?= $doctor["id"]; ?>" class="d-flex justify-content-center gap-3">
-            <p >Status: </p> 
+        <form method="GET" action="/doctor/manage-appointments" class="d-flex justify-content-center gap-3">
             <?php if (isset($_GET["filter"]) === true) : ?>
             <select name="filter">
-                <option selected disabled hidden>Select a Specialty</option>
+                <option selected disabled hidden>Filter by Status</option>
                 <option value="Pending" <?= ($filter_keyword === "Pending" ? "selected" : ""); ?>>Pending</option>
                 <option value="Scheduled" <?= ($filter_keyword === "Scheduled" ? "selected" : ""); ?>>Scheduled</option>
                 <option value="Completed" <?= ($filter_keyword === "Completed" ? "selected" : ""); ?>>Completed</option>
             </select>
             <?php else : ?>
             <select name="filter">
-                <option selected disabled hidden>Select a Specialty</option>
+                <option selected disabled hidden>Filter by Status</option>
                 <option value="Pending">Pending</option>
                 <option value="Scheduled">Scheduled</option>
                 <option value="Completed">Completed</option>
             </select>
             <?php endif; ?>
+            <input type="hidden" name="id" value="<?=$doctor_id;?>">
           <button class="btn btn-sm btn-primary">Sort</button>
-          <a href="/find-doctor" class="btn btn-dark">Reset</a>
+          <a href="/doctor/manage-appointments?id=<?=$doctor_id?>" class="btn btn-dark">Reset</a>
         </form>
         <!-- sort end -->
       </div>

@@ -22,25 +22,34 @@
     ]);
     // TODO: 2.4 fetch
     $appointments = $query->fetchAll(); // get only the first row of the match data
-} else {
-  // TODO: 1. connect to database
-  $database = connectToDB();
-  // TODO: 2. get all the users
-  // TODO: 2.1
-  $sql = "SELECT * FROM appointments
-          ORDER BY appointments.id DESC";
-  // TODO: 2.2
-  $query = $database->prepare( $sql );
-  // TODO: 2.3
-  $query->execute();
-  // TODO: 2.4
-  $appointments = $query->fetchAll();
-}
+  } else {
+    // TODO: 1. connect to database
+    $database = connectToDB();
+    // TODO: 2. get all the users
+    // TODO: 2.1
+    $sql = "SELECT * FROM appointments
+            ORDER BY appointments.id DESC";
+    // TODO: 2.2
+    $query = $database->prepare( $sql );
+    // TODO: 2.3
+    $query->execute();
+    // TODO: 2.4
+    $appointments = $query->fetchAll();
+  }
 
 
 ?>
 
 <?php require "parts/header.php"; ?>
+<!-- navbar start -->
+<nav class="navbar bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/admin/dashboard">
+      <i class="bi bi-arrow-left mx-3"></i>Back
+    </a>
+  </div>
+</nav>
+<!-- navbar end -->
 
     <div class="container my-5">
       <div class="d-flex justify-content-between align-items-center mb-2">
@@ -57,7 +66,7 @@
             </select>
             <?php else : ?>
             <select name="filter">
-                <option selected disabled hidden>Select a Specialty</option>
+                <option selected disabled hidden>Filter by Status</option>
                 <option value="Pending">Pending</option>
                 <option value="Scheduled">Scheduled</option>
                 <option value="Completed">Completed</option>
@@ -151,11 +160,6 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-      </div>
-      <div class="text-center">
-        <a href="/admin/dashboard" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
-        >
       </div>
     </div>
 <?php require "parts/footer.php"; ?>

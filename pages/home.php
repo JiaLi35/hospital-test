@@ -52,15 +52,15 @@
 <!-- navbar end -->
 
 <!-- carousel start -->
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel"> 
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel"> 
         <div class="carousel-indicators"> 
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button> 
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button> 
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button> 
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button> 
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button> 
         </div>
         <div class="carousel-inner"> 
-            <div class="carousel-item"> 
-                <div class="mask">
+            <div class="carousel-item active"> 
+                <div id="mask">
                     <img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/09/Suite_Room_6-2.jpg" style="height:65vh; width:100vw; object-fit:cover;">
                 </div>
                 <div class="container"> 
@@ -72,7 +72,7 @@
                 </div> 
             </div> 
             <div class="carousel-item"> 
-                <div class="mask">
+                <div id="mask">
                     <img src="https://www.ihhhealthcare.com/images/ihhmylibraries/careers/doctor-bg-copy.webp?sfvrsn=75b022dc_1" style="height:65vh; width:100vw; object-fit:cover; object-position:100% 30%">
                 </div>
                 <div class="container"> 
@@ -83,8 +83,8 @@
                     </div> 
                 </div> 
             </div> 
-            <div class="carousel-item active"> 
-                <div class="mask">
+            <div class="carousel-item"> 
+                <div id="mask">
                     <img src="https://islandhospital.com/wp-content/uploads/2023/01/hospital-about-us-patient-42.jpg" style="height:65vh; width:100vw; object-fit:cover;">
                 </div>
                 <div class="container"> 
@@ -105,7 +105,8 @@
     </div>
 <!-- carousel end -->
 
-<div class="mx-4 my-3 d-flex justify-content-center align-items-center">
+<!-- buttons start -->
+<div class="mx-5 my-5 d-flex justify-content-center align-items-center">
   <a href="/" class="btn flex-fill py-3 text-white" style="background-color: #6cc16e; border-radius: 12px 0 0 12px;">
     <i class="bi bi-calendar-event me-2"></i>
     Events & Charities
@@ -119,21 +120,17 @@
     Health Screening Packages
   </a>
 </div>
+<!-- buttons end -->
 
-<div class="container my-5 p-5 fs-5">
+<!-- packages start -->
+<div class="container text-center my-5 p-5 fs-5">
+    <h1 class="my-5"> Packages & Promotions </h1>
     <p> 
-        We believe that health is a precious asset, and we are here to help you protect and enhance it. Whether you need routine medical care, specialised treatments, or preventive health services, we are your trusted partner in health.
+        Our health packages provide top-quality preventive care for individuals and families. With a focus on care for life, we offer screenings and tests to detect potential health issues early, supporting well-being and peace of mind.
     </p>
-    <p> 
-        As one of the leading private healthcare providers in Malaysia, KPJ Healthcare has been at the forefront of the industry for over four decades, devoted to improving the health and well-being of our patients.
-    </p>
-    <p> 
-        KPJ Healthcare – Your Preferred Healthcare Partner.
-    </p>       
 </div>
 
 <div class="container my-5">
-    <h3 class="text-center my-3" id="packages"> Packages & Promotions </h3> 
     <div class="row">
         <!-- column start -->
         <div class="col">
@@ -173,7 +170,10 @@
         <!-- column end -->
     </div>
 </div>
+<!-- packages end -->
 
-
+<footer class="p-3 bg-white d-flex justify-content-center h-100 align-items-center">
+    <p class="m-0"> © Jia Li 2025 </p>
+</footer>
 
 <?php require "parts/footer.php"; ?>
