@@ -7,6 +7,11 @@ if (!isUserLoggedIn()){
 $id = $_GET["id"];
 
 $user = GetUserDetailsByUID($id);
+
+if ($user["user_id"] !== $_SESSION["user"]["id"]){
+  header("Location: /");
+  exit;
+}
 ?>
 
 <?php require "parts/header.php"; ?>

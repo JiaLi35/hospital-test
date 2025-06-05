@@ -1,4 +1,11 @@
 <?php
+
+if (isDoctor() || isAdmin() || !isUserLoggedIn() ){
+    $_SESSION["error"] = "Please create an account first before booking an appointment.";
+    header("Location: /");
+    exit;
+}
+
   $id = $_GET["id"];
 
   // TODO: 1. connect to database
@@ -15,7 +22,6 @@
   ]);
   // TODO: 2.4
   $appointment = $query->fetch();
-
 ?>
 
 <?php require "parts/header.php"; ?>
